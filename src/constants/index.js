@@ -19,6 +19,9 @@ import {
   starbucks,
   tesla,
   shopify,
+  ipoIndia,
+  ieee,
+  mle,
   carrent,
   jobit,
   tripguide,
@@ -33,6 +36,10 @@ export const navLinks = [
   {
     id: "work",
     title: "Work",
+  },
+  {
+    id: "publications",
+    title: "Publications",
   },
   {
     id: "contact",
@@ -50,7 +57,7 @@ const services = [
     icon: mobile,
   },
   {
-    title: "iOS Developer",
+    title: "Machine Leaning Algorithms",
     icon: backend,
   },
   {
@@ -148,6 +155,19 @@ const experiences = [
     ],
   },
   {
+    title: "Machine Learning Research Assistant",
+    company_name: "Bharati Vidyapeeth College of Engineering, Pune, India",
+    icon: mle,
+    iconBg: "#383E56",
+    date: "January 2024 - June 2024",
+    points: [
+      "Developed a production-ready LLM-based healthcare chatbot achieving 94% query resolution accuracy using OpenAI API and BBCR Repertory for homeopathic diagnosis, serving the homeopathy department of BVP Pune.",
+      "Architected a scalable ML pipeline integrating a Flask + LangChain backend with a Cassandra vector database, reducing query response time by 65% through optimized similarity search and caching.",
+      "Implemented RAG fine-tuning improving domain-specific medical query accuracy by 23% compared to base GPT models.",
+      "Applied a real-time model monitoring system tracking performance metrics, user engagement, and model drift detection.",
+    ],
+  },
+  {
     title: "Seeking Internship Opportunities",
     company_name: "Company needing Web Development interns",
     icon: shopify,
@@ -173,6 +193,42 @@ const experiences = [
   //     "Participating in code reviews and providing constructive feedback to other developers.",
   //   ],
   // },
+];
+
+const publications = [
+  {
+    title: "IEEE Published Research Paper - O.S Scheduling Page Replacement || Link",
+    company_name: "Institute of Electrical and Electronics Engineers (IEEE)",
+    icon: ieee,
+    iconBg: "#383E56",
+    date: "September 2024",
+    link: "https://ieeexplore.ieee.org/document/10673617",
+    points: [
+      "International research paper published in the Institute of Electrical and Electronics Engineers (IEEE).",
+    ],
+  },
+  {
+    title: "Patent Accepted - LLM Healthcare Chatbot Code || Intellectual Property of India",
+    company_name: "Intellectual Property of India",
+    icon: ipoIndia,
+    iconBg: "#383E56",
+    date: "October 2024",
+    link: "https://drive.google.com/file/d/1g4c4rn8txbktou8TRWMAxyOLE6wgtM-W/view",
+    points: [
+      "Patent accepted for healthcare chatbot code, fine-tuned for specific homeopathic healthcare.",
+    ],
+  },
+  {
+    title: "Copyright - O.S Scheduling Page Replacement Code in Bash Script || Link",
+    company_name: "Intellectual Property India and Copyright Office, India",
+    icon: ipoIndia,
+    iconBg: "#383E56",
+    date: "August 2023",
+    link: "https://drive.google.com/file/d/1xHhhW7KOk1YWMflvC0h3pI-MUgGHQ3lv/view",
+    points: [
+      "Copyright through Intellectual Property, India and Copyright Office, India.",
+    ],
+  },
 ];
 
 const testimonials = [
@@ -273,4 +329,12 @@ const projects = [
   },
 ];
 
-export { services, picture, technologies, experiences, testimonials, projects };
+export {
+  services,
+  picture,
+  technologies,
+  experiences,
+  publications,
+  testimonials,
+  projects,
+};

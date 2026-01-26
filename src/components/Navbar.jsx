@@ -63,7 +63,7 @@ const Navbar = () => {
           ))}
           <li>
             <a
-              href="https://github.com/Ruchir-Bhatia"
+              href="https://github.com/RuchirBhatia4"
               className={`${
                 active === "GitHub" ? "text-white" : "text-secondary"
               } hover:text-white text-[18px] font-medium cursor-pointer`}

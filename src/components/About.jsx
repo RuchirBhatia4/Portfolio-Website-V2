@@ -47,14 +47,21 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
-        I'm a Student learning Web Development Technologies and Stacks with some 
-        experience in JavaScript, and beginner in frameworks like React, Node.js, 
-        Express.js and database technologies like MongoDB. I'm a quick learner and 
-        want to work and create efficient, scalable, and user-friendly solutions that 
-        solve real-world problems. I am eager to learn and acquire mastery in my skills 
-        by learning from experienced individuals and experts. I am actively seeking 
-        internship opportunities and chance to collaborate to larger projects. Let's 
-        work together to bring our ideas to life!
+        I am a Master’s student in Computer Science with a strong focus on Machine
+        Learning and Deep Learning, with hands-on experience building LLM-powered,
+        production-ready systems. My work spans LLM integration,
+        Retrieval-Augmented Generation (RAG), multimodal recommendation systems, and
+        scalable ML pipelines, using tools such as PyTorch, TensorFlow, LangChain,
+        and vector databases. I have built and deployed an LLM-based healthcare
+        chatbot with optimized retrieval and caching, achieving significant
+        improvements in response latency and domain-specific accuracy, and developed
+        a multimodal recommendation system using LVLMs that delivered substantial
+        gains in Recall@10 and NDCG@10. I am particularly interested in applying ML
+        to solve real-world, high-impact problems at scale. I am a fast learner,
+        motivated to deepen my expertise in applied ML, LLM systems, and MLOps, and
+        I actively seek internship and research opportunities where I can collaborate
+        with experienced engineers and researchers to build robust, scalable, and
+        intelligent systems.
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10'>
