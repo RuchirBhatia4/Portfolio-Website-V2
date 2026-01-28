@@ -169,15 +169,12 @@ const experiences = [
   },
   {
     title: "Seeking Internship Opportunities",
-    company_name: "Company needing Web Development interns",
+    company_name: "Organizations needing Machine Learning Intern",
     icon: shopify,
     iconBg: "#ffffff",
     date: "Currently",
     points: [
-      "Seeking internship opportunities and chance to work on front-end web development technologies and some backend technologies.",
-      "I am skilled at C++, C, HTML5, CSS3, Bootstrap, JavaScript, Front-end Frameworks (like React.js), jQuery, Node.js, Express.js, MongoDB, NoSQL, SQL, Github etc.",
-      "I have built Full stack project using the MERN stack. (MongoDB, Express.js, React, Node.js)",
-      "I look forward to speaking with you regarding my skills and attributes which I believe will serve as an asset to support your company’s goals.",
+      "I am currently seeking Summer 2026 internship opportunities in machine learning, data engineering, and software engineering, where I can apply my experience in building scalable data pipelines, distributed systems, and applied ML solutions. I have hands-on experience working with large datasets, cloud platforms, and production-grade ML systems, and I enjoy taking ownership of problems from design to deployment. I am particularly interested in roles that value strong fundamentals, real-world impact, and learning through collaboration. If you are looking for a motivated intern who enjoys solving challenging problems and building reliable systems, I would love to connect.",
     ],
   },
   // {
