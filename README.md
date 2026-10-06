@@ -1,87 +1,14 @@
-# Portfolio Website – Version 2
+# Ruchir Bhatia — Portfolio
 
-A modern, interactive portfolio website built with React, Three.js, and Tailwind CSS.
+Live: https://ruchirportfoliowebsite.vercel.app
 
-## Project Overview
+A single static page (`index.html`) with no framework or dependencies:
+particle hero, Skim/Deep reading modes, a ⌘K command menu, and real recordings of
+PitWall AI and DriveMind (plus an embedded live PitWall).
 
-**Learning Focus:** HTML, CSS, Tailwind, Vite  
-**Development Period:** October 2023 – March 2024  
-**Total Development Days:** 8 days
+- `media/` — project recordings (DriveMind footage: BDD100K, non-commercial licence; credit kept on the page)
+- `resume.pdf` — current résumé
+- `photo.jpg` (optional) — add a headshot and it appears as a particle portrait in the hero
 
-## Development Timeline
-
-- **October 12, 2023**
-- **October 18, 2023**
-- **November 2, 2023**
-- **November 15, 2023**
-- **December 5, 2023**
-- **January 10, 2024**
-- **February 8, 2024**
-- **March 3, 2024**
-
-## Tech Stack
-
-- **Frontend Framework:** React 18.2.0
-- **Build Tool:** Vite 4.1.0
-- **Styling:** Tailwind CSS 3.2.6
-- **3D Graphics:** Three.js, React Three Fiber, Drei
-- **Animation:** Framer Motion
-- **Routing:** React Router DOM
-- **Email:** EmailJS
-
-## Features
-
-- Interactive 3D elements using Three.js
-- Smooth animations with Framer Motion
-- Responsive design with Tailwind CSS
-- Modern UI/UX components
-- Contact form integration
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
-```bash
-npm install
-```
-
-### Development
-
-```bash
-npm run dev
-```
-
-### Build
-
-```bash
-npm run build
-```
-
-### Preview
-
-```bash
-npm run preview
-```
-
-## Project Structure
-
-```
-src/
-├── components/      # React components
-│   ├── canvas/     # Three.js 3D components
-│   └── ...
-├── assets/         # Images and static assets
-├── constants/      # Configuration constants
-├── hoc/            # Higher-order components
-── utils/          # Utility functions
-└── styles.js       # Styling configurations
-```
-
-## License
-
-Private project - All rights reserved
+`npm run build` copies everything into `dist/` (used by Vercel and GitHub Pages).
+The previous React/Three.js site is preserved at tag `archive/react-3d-portfolio`.

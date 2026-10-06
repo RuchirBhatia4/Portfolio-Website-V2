@@ -1,21 +1,674 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ruchir | Portfolio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <noscript>
-      <style>
-        body {
-          display: none;
-        }
-      </style>
-    </noscript>    
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruchir Bhatia</title>
+<meta name="description" content="Ruchir Bhatia — Software & AI engineer in Los Angeles. USC M.S. CS '27. Live F1 strategy engines, on-device driving assistants, and production fullstack.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fafaf8; --surface:#ffffff; --ink:#111110; --ink-2:#55554f; --ink-3:#8f8f88;
+  --line:#e7e6e1; --line-2:#d9d8d2; --accent:#04E3AD; --accent-text:#03936F; --accent-soft:#E2FBF4;
+  --good:#1f8a4c; --chip:#f2f1ec; --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e0e0d; --surface:#161614; --ink:#f1f0ea; --ink-2:#b0afa7; --ink-3:#77766f;
+    --line:#262623; --line-2:#33332f; --accent:#04E3AD; --accent-text:#04E3AD; --accent-soft:#0A2A22;
+    --good:#4cc47f; --chip:#1d1d1a; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e0e0d; --surface:#161614; --ink:#f1f0ea; --ink-2:#b0afa7; --ink-3:#77766f;
+  --line:#262623; --line-2:#33332f; --accent:#04E3AD; --accent-text:#04E3AD; --accent-soft:#0A2A22;
+  --good:#4cc47f; --chip:#1d1d1a; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:22px 22px;background-attachment:fixed}
+a{color:inherit;text-decoration-color:var(--line-2);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--accent)}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* banner + nav */
+.banner{background:var(--ink);color:var(--bg);font-size:12.5px;text-align:center;padding:7px 16px}
+.banner a{color:inherit;font-weight:600}
+.banner .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ddc84;margin-right:8px;vertical-align:1px;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 7px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:6px;height:50px}
+nav a.tab{font-size:13px;padding:4px 10px;border-radius:7px;text-decoration:none;color:var(--ink-2)}
+nav a.tab:hover,nav a.tab.on{background:var(--chip);color:var(--ink)}
+nav .sp{flex:1}
+.kbd{font:500 11px "JetBrains Mono",monospace;border:1px solid var(--line-2);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--ink-2);background:var(--surface)}
+.btn{font:500 12.5px Inter,sans-serif;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.btn:hover{border-color:var(--ink-3)}
+.btn.solid{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:8px;overflow:hidden;background:var(--surface)}
+.seg button{font:500 12px Inter,sans-serif;border:0;background:none;color:var(--ink-3);padding:5px 9px;cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--bg)}
+nav a.tab{white-space:nowrap}
+@media (max-width:560px){nav a.tab.hide-sm,.hide-sm{display:none}nav .wrap{gap:2px}nav a.tab{padding:4px 7px}}
+
+/* hero */
+header.hero{padding:56px 0 28px}
+.morph{position:relative;height:250px;margin:0 -20px;cursor:crosshair;touch-action:pan-y;user-select:none}
+.morph canvas{display:block;width:100%;height:100%}
+.morph .lbl{position:absolute;left:20px;bottom:6px;font:11px "JetBrains Mono",monospace;color:var(--ink-3);display:flex;gap:12px;align-items:center;pointer-events:none}
+.morph .lbl b{color:var(--accent-text);font-weight:500}
+.morph .pips{position:absolute;right:20px;bottom:8px;display:flex;gap:6px}
+.morph .pips button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:var(--line-2);cursor:pointer}
+.morph .pips button.on{background:var(--accent);width:20px;border-radius:4px}
+header.hero{padding-top:28px}
+h1{font-size:30px;line-height:1.2;letter-spacing:-.02em;margin:22px 0 4px;font-weight:600}
+h1 .role{color:var(--ink-3);font-weight:500}
+.tagline{font:italic 22px/1.35 "Instrument Serif",serif;color:var(--ink-2);margin:6px 0 16px}
+.tagline .rot{color:var(--accent-text);border-bottom:1px dashed var(--accent)}
+.lede p{margin:0 0 12px;color:var(--ink-2);max-width:62ch}
+.lede strong{color:var(--ink);font-weight:600}
+.meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;color:var(--ink-3);margin:14px 0 4px}
+.meta span{display:inline-flex;align-items:center;gap:6px}
+.hl{display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;margin:22px 0 0;padding:0;list-style:none;font-size:13.5px}
+.hl li{position:relative;padding-left:16px;color:var(--ink-2)}
+.hl li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:2px;background:var(--accent)}
+.cta{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+@media (max-width:560px){.hl{grid-template-columns:1fr}h1{font-size:26px}}
+
+/* sections */
+section{padding:34px 0 8px}
+h2{font-size:21px;letter-spacing:-.015em;font-weight:600;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+h2 .n{font:500 11px "JetBrains Mono",monospace;color:var(--ink-3)}
+.sub{color:var(--ink-3);font-size:13px;margin:0 0 18px}
+
+/* experience */
+.xp{border-left:1px solid var(--line-2);margin-left:4px;padding-left:22px}
+.xp-item{position:relative;padding:4px 0 22px}
+.xp-item::before{content:"";position:absolute;left:-27px;top:11px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--ink-3)}
+.xp-item.now::before{border-color:var(--accent);background:var(--accent)}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.org{font-weight:600}
+.org .r{font-weight:400;color:var(--ink-3);font-size:13px;margin-left:6px}
+.date{font:12px "JetBrains Mono",monospace;color:var(--ink-3)}
+.desc{color:var(--ink-2);font-size:14px;margin:6px 0 0}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:8px;font:12px "JetBrains Mono",monospace;color:var(--ink-2)}
+.stats span::before{content:"→ ";color:var(--accent-text)}
+
+/* projects */
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:18px;transition:transform .25s,border-color .25s}
+.proj:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.proj .body{padding:18px 20px 18px}
+.proj h3{margin:0;font-size:17px;font-weight:600;letter-spacing:-.01em}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.tag{font:11px "JetBrains Mono",monospace;background:var(--chip);color:var(--ink-2);padding:2px 7px;border-radius:5px}
+.links{display:flex;gap:14px;margin-top:12px;font-size:13px}
+.links a{color:var(--accent-text);text-decoration:none;font-weight:500}
+.links a:hover{text-decoration:underline}
+.viz{position:relative;border-bottom:1px solid var(--line);background:var(--bg)}
+.viz canvas{display:block;width:100%;height:190px}
+.viz .cap{position:absolute;left:12px;top:10px;font:11px "JetBrains Mono",monospace;color:var(--ink-3);display:flex;gap:10px;align-items:center}
+.viz .live{color:var(--accent-text)}
+.viz .ctl{position:absolute;right:10px;top:8px;display:flex;gap:6px}
+.viz .ctl button{font:11px "JetBrains Mono",monospace;background:var(--surface);border:1px solid var(--line-2);color:var(--ink-2);border-radius:6px;padding:2px 7px;cursor:pointer}
+.viz .ctl button.on{color:var(--accent-text);border-color:var(--accent)}
+.dmviz{background:#0b0d10}
+.vtabs{display:flex;gap:4px;padding:8px 10px;background:var(--surface);border-bottom:1px solid var(--line)}
+.vtabs button{font:11.5px "JetBrains Mono",monospace;border:1px solid transparent;background:none;color:var(--ink-3);border-radius:6px;padding:3px 9px;cursor:pointer}
+.vtabs button.on{color:var(--accent-text);border-color:var(--accent);background:var(--accent-soft)}
+.livewrap{position:relative;height:520px;background:#0b0b0d}
+.livewrap iframe{display:block;width:100%;height:100%;border:0}
+.liveph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:20px;color:#d7d6cf;background:radial-gradient(ellipse at center,rgba(4,227,173,.16),transparent 60%),url(media/pitwall_poster.jpg) center/cover;}
+.liveph::before{content:"";position:absolute;inset:0;background:rgba(8,8,10,.72)}
+.liveph>*{position:relative}
+.liveph b{font-size:17px;color:#fff}
+.liveph span{font-size:13px}
+.liveph .btn.solid{background:#04E3AD;border-color:#04E3AD;color:#04130F;font-weight:600;padding:8px 14px;font-size:13.5px}
+@media (max-width:560px){.livewrap{height:460px}}
+.dmviz .pane[data-p="sk"]{position:relative;background:var(--bg)}
+.shot{display:block;position:relative;width:100%;padding:0;border:0;background:#0b0d10;cursor:zoom-in}
+.shot img{display:block;width:100%;height:auto;aspect-ratio:960/506}
+.shot .expand{position:absolute;right:10px;bottom:10px;font:11px "JetBrains Mono",monospace;color:#fff;background:rgba(0,0,0,.55);padding:3px 8px;border-radius:6px;opacity:0;transition:.2s}
+.shot:hover .expand,.shot:focus-visible .expand{opacity:1}
+.credit{margin:0;padding:8px 12px;font-size:10.5px;line-height:1.45;color:var(--ink-3);background:var(--surface);border-top:1px solid var(--line)}
+.credit a{color:inherit}
+.voice{margin:14px 0 0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg)}
+.voice img{display:block;width:100%;height:auto}
+.voice figcaption{font-size:12.5px;color:var(--ink-2);padding:8px 12px;border-top:1px solid var(--line)}
+.lb{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+.lb.open{display:flex}
+.lb img{max-width:min(1400px,100%);max-height:100%;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.honest{font-size:12px;color:var(--ink-3);margin-top:10px;border-left:2px solid var(--line-2);padding-left:10px}
+
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.num{background:var(--surface);padding:16px 16px 14px}
+.num b{display:block;font:600 26px/1.1 Inter,sans-serif;letter-spacing:-.02em}
+.num small{display:block;color:var(--ink-3);font-size:12px;line-height:1.4;margin-top:6px}
+@media (max-width:640px){.nums{grid-template-columns:1fr 1fr}}
+
+/* pubs, edu */
+.list-item{padding:14px 0;border-top:1px solid var(--line)}
+.list-item:first-child{border-top:0}
+.kind{font:11px "JetBrains Mono",monospace;color:var(--accent-text);text-transform:uppercase;letter-spacing:.06em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}
+.skills h4{margin:0 0 6px;font-size:13px;font-weight:600}
+.skills h4 i{font:normal 11px "JetBrains Mono",monospace;color:var(--ink-3);margin-right:8px}
+.skills p{margin:0;color:var(--ink-2);font-size:13.5px}
+@media (max-width:560px){.skills{grid-template-columns:1fr}}
+
+/* contact */
+.contact{background:var(--ink);color:var(--bg);border-radius:16px;padding:28px 24px;margin:20px 0 10px}
+.contact h2{color:var(--bg)}
+.contact p{color:color-mix(in srgb,var(--bg) 70%,transparent);margin:6px 0 18px;max-width:52ch}
+.contact .btn{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 35%,transparent)}
+.contact .btn.solid{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+footer{color:var(--ink-3);font-size:12px;padding:18px 0 48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+/* skim mode: for the 30-second read */
+body.skim .deep{display:none!important}
+body.skim .proj .viz:not(.dmviz){display:none}
+body.skim .vtabs{display:none}
+.deep{}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* command palette */
+.cmdk-bg{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;z-index:50;padding:12vh 16px 0}
+.cmdk-bg.open{display:block}
+.cmdk{max-width:520px;margin:0 auto;background:var(--surface);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.25);overflow:hidden}
+.cmdk input{width:100%;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);font:15px Inter,sans-serif;padding:15px 16px;outline:none}
+.cmdk ul{list-style:none;margin:0;padding:6px;max-height:50vh;overflow:auto}
+.cmdk li{padding:9px 10px;border-radius:8px;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;gap:10px}
+.cmdk li small{color:var(--ink-3);font:11px "JetBrains Mono",monospace}
+.cmdk li.sel{background:var(--chip)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);font-size:13px;padding:8px 14px;border-radius:9px;opacity:0;transition:.25s;z-index:60;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+
+<div class="banner"><span class="dot"></span>Graduating May 2027 · open to full-time <b>SWE / MLE / AI Engineer</b> roles · <a href="#contact">Get in touch →</a></div>
+
+<nav>
+  <div class="wrap">
+    <a class="tab on" href="#top">Home</a>
+    <a class="tab hide-sm" href="#work">Work</a>
+    <a class="tab" href="#projects">Projects</a>
+    <a class="tab hide-sm" href="https://github.com/RuchirBhatia4" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="tab hide-sm" href="resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+    <span class="sp"></span>
+    <div class="seg" title="Skim = the 30-second version">
+      <button id="mSkim">Skim</button><button id="mDeep" class="on">Deep</button>
+    </div>
+    <button class="btn hide-sm" id="openK" aria-label="Open command menu"><span class="kbd">⌘K</span></button>
+    <button class="btn" id="theme" aria-label="Toggle theme">◐</button>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+<header class="hero">
+  <div class="morph" id="morph" aria-label="Interactive particle animation. Click to change shape.">
+    <canvas id="mc"></canvas>
+    <div class="lbl"><b id="mName">RB</b><span id="mHint">move your cursor through it · click to morph</span></div>
+    <div class="pips" id="pips"></div>
+  </div>
+  <h1>Ruchir Bhatia <span class="role">/ Software &amp; AI Engineer / LA</span></h1>
+  <div class="tagline">I build software that has to be right <span class="rot" id="rot">at 300 km/h</span>.</div>
+  <div class="lede">
+    <p>I'm a CS master's student at <strong>USC</strong> who ships things end-to-end: a <strong>live F1 race-strategy engine</strong> that makes pit calls from real timing data, an <strong>on-device driving co-pilot</strong> that watches the road and the driver, and customer-facing features for a product that <strong>doubled its users</strong> while I was on the team.</p>
+    <p class="deep">I care about one thing more than most: <strong>numbers I can defend</strong>. Every model on this page was tested on data it never saw, with the test written down before it was run — and where something didn't work, I say so.</p>
+  </div>
+  <div class="meta mono">
+    <span>📍 Los Angeles, CA</span><span id="clock">—</span><span>🎓 USC M.S. CS · May 2027</span>
+  </div>
+  <ul class="hl">
+    <li>SWE intern at <b>Transnode AI</b> — users up ~111% over the summer</li>
+    <li>SWE intern at <b>Redis</b> — 18% less memory on ElastiCache</li>
+    <li><b>IEEE</b> published paper + accepted <b>patent</b></li>
+    <li>Top 5% of B.Tech class · 4.0 in USC ML coursework</li>
+    <li>Live F1 pit calls in <b>under 3 s</b></li>
+    <li>Caught <b>10/12</b> unseen drowsy drivers, 1 false alert in 2 h</li>
+  </ul>
+  <div class="cta">
+    <a class="btn solid" href="mailto:bhatiaruchir04@gmail.com">✉ Email me</a>
+    <a class="btn" href="resume.pdf" target="_blank" rel="noopener">↓ Résumé</a>
+    <a class="btn" href="https://www.linkedin.com/in/ruchir-bhatia/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a class="btn" href="https://github.com/RuchirBhatia4" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</header>
+
+<section id="work" class="rv">
+  <h2>Experience <span class="n">01</span></h2>
+  <p class="sub">Where I've shipped code other people depend on.</p>
+  <div class="xp">
+    <div class="xp-item now">
+      <div class="row"><span class="org">Transnode AI <span class="r">Software Engineer Intern · <a href="https://drive.google.com/file/d/1V_MafV73JvbBjVRw0Xemip8QAkgBuiqm/view?usp=sharing" target="_blank" rel="noopener">letter ↗</a></span></span><span class="date">Jun – Aug 2026</span></div>
+      <p class="desc">Owned customer-facing features for <b>Earnie</b> end-to-end across React Native, iOS and web — from design through launch, including the release-blocking bugs nobody else wanted.</p>
+      <div class="stats"><span>679 → 1,436 registered users (~111%)</span><span class="deep">React Native · iOS · Web</span></div>
+    </div>
+    <div class="xp-item">
+      <div class="row"><span class="org">Bharati Vidyapeeth COE <span class="r">ML Research Assistant</span></span><span class="date">Jan – Jun 2024</span></div>
+      <p class="desc">Built a retrieval-augmented generation pipeline grounding LLM answers in structured knowledge, then profiled it until it was fast enough to feel instant.</p>
+      <div class="stats"><span>65% lower end-to-end latency</span><span class="deep">Python · PyTorch · RAG</span></div>
+    </div>
+    <div class="xp-item">
+      <div class="row"><span class="org">Redis Ltd <span class="r">Software Engineer Intern · <a href="https://drive.google.com/file/d/1PlpwhOHh2lQAliIBUCnV0DR6NCE-3dhF/view?usp=sharing" target="_blank" rel="noopener">letter ↗</a></span></span><span class="date">Jun – Sep 2023</span></div>
+      <p class="desc">Designed and tested Redis 7.2 caching workflows for high-throughput, low-latency access on AWS ElastiCache, and automated the regression suite around them.</p>
+      <div class="stats"><span>18% less memory</span><span>30% faster testing</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="rv">
+  <h2>Featured Projects <span class="n">02</span></h2>
+  <p class="sub">Real recordings of the real systems — and one you can drive yourself.</p>
+
+  <article class="proj">
+    <div class="viz dmviz pwviz">
+      <div class="vtabs" role="tablist">
+        <button class="on" data-v="rec" role="tab">● Recorded replay</button>
+        <button data-v="live" role="tab">Try it live</button>
+        <button data-v="sk" role="tab">How the call works</button>
+      </div>
+      <div class="pane" data-p="rec">
+        <button class="shot" data-full="media/pitwall_demo.webp" aria-label="Open the PitWall replay full size">
+          <img src="media/pitwall_demo.webp" width="800" height="500" loading="lazy" decoding="async" style="aspect-ratio:800/500"
+               alt="PitWall AI live pit wall replaying the 2026 Azerbaijan Grand Prix for George Russell: 'Stay out, pit window laps 19–22' on lap 13, then 'BOX, BOX — Softs' on laps 29–30, then 'Stay out to the flag on Softs'">
+          <span class="expand">⤢ full size</span>
+        </button>
+        <p class="credit">PitWall's live pit wall replaying the 2026 Azerbaijan GP lap by lap through the same engine that runs on race day: "stay out" on lap 13, "BOX, BOX — Softs" on lap 29, then "stay out to the flag". Independent project, not affiliated with Formula 1.</p>
+      </div>
+      <div class="pane" data-p="live" hidden>
+        <div class="livewrap" id="pwLive">
+          <div class="liveph">
+            <b>Run the real app here</b>
+            <span>Pick <i>Replay a 2026 race</i> → <i>Connect</i>, then choose any driver.</span>
+            <button class="btn solid" id="pwLoad">▶ Load live PitWall</button>
+          </div>
+        </div>
+        <p class="credit">Embedded from <a href="https://pitwall-ai-f1.vercel.app/live" target="_blank" rel="noopener">pitwall-ai-f1.vercel.app/live</a>. Better on a big screen. <a href="https://pitwall-ai-f1.vercel.app/live" target="_blank" rel="noopener">Open in a new tab ↗</a></p>
+      </div>
+      <div class="pane" data-p="sk" hidden>
+        <div class="cap"><span class="live">● LIVE SKETCH</span><span id="pwLap">LAP 1/57</span></div>
+        <div class="ctl"><button data-for="pw" class="on">pause</button></div>
+        <canvas id="pw"></canvas>
+      </div>
+    </div>
+    <div class="body">
+      <div class="row"><h3>PitWall AI</h3><span class="date">2026 · deployed</span></div>
+      <p class="desc">A live Formula 1 race-strategy engine. A Bayesian tyre-wear model updates lap by lap from live timing; an exact dynamic-programming optimiser searches every 0–3 stop plan; Monte Carlo simulates safety-car risk. It makes a pit call in under three seconds.</p>
+      <div class="stats"><span>Walk-forward on 173 driver-races</span><span>First-stop error 9.2 vs 10.3 laps (baseline)</span><span class="deep">Stop-count accuracy 33.5% vs 27.7%</span></div>
+      <p class="honest deep">Honest note: the baseline is a naive strategy, and the margin is real but modest. F1 strategy is hard — that's why I built it.</p>
+      <div class="tags"><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">Bayesian inference</span><span class="tag">Dynamic programming</span><span class="tag">Monte Carlo</span></div>
+      <div class="links"><a href="https://pitwall-ai-f1.vercel.app" target="_blank" rel="noopener">Live app ↗</a><a href="https://github.com/RuchirBhatia4/Pitwall-AI" target="_blank" rel="noopener">Repo ↗</a></div>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="viz dmviz">
+      <div class="vtabs" role="tablist">
+        <button class="on" data-v="rec" role="tab">● Recorded live demo</button>
+        <button data-v="sk" role="tab">How the alert works</button>
+      </div>
+      <div class="pane" data-p="rec">
+        <button class="shot" data-full="media/drivemind_demo.webp" id="dmShot" aria-label="Open the DriveMind demo full size">
+          <img src="media/drivemind_demo.webp" width="960" height="506" loading="lazy" decoding="async"
+               alt="DriveMind running live: tracking cars and pedestrians at a Manhattan crosswalk, a collision warning and a microsleep alert at the same moment, then a distraction alert">
+          <span class="expand">⤢ full size</span>
+        </button>
+        <p class="credit">Screen recording of DriveMind running live on a MacBook Pro, everything on-device. Road footage: <a href="https://bdd-data.berkeley.edu/" target="_blank" rel="noopener">BDD100K</a> © 2018 The Regents of the University of California, used for non-commercial, educational purposes under the <a href="https://github.com/bdd100k/bdd100k/blob/master/doc/source/license.rst" target="_blank" rel="noopener">BDD100K license</a>.</p>
+      </div>
+      <div class="pane" data-p="sk" hidden>
+        <div class="cap"><span class="live">● LIVE SKETCH</span><span id="dmState">EYES OPEN</span></div>
+        <div class="ctl"><button data-for="dm" class="on">pause</button></div>
+        <canvas id="dm"></canvas>
+      </div>
+    </div>
+    <div class="body">
+      <div class="row"><h3>DriveMind — Multimodal In-Vehicle Assistant</h3><span class="date">2026</span></div>
+      <p class="desc">An on-device co-pilot: YOLO11 + ByteTrack perception on the road, a driver monitor watching for drowsiness, and a 4-bit vision-language model agent you can talk to through Whisper.</p>
+      <div class="stats"><span>Eye-state model blink F1 0.95</span><span>False microsleep alerts 33/h → 0</span><span>10/12 unseen drowsy drivers caught</span><span class="deep">YOLO 10–18 ms/frame</span></div>
+      <figure class="voice deep"><img src="media/drivemind_voice_qa.png" loading="lazy" alt="Spoken question 'Is that light green?' answered on-device: Whisper 0.6 s, VLM 1.7 s, 2.3 s end to end"><figcaption>Ask it out loud — <i>“Is that light green?”</i> — and it answers on-device in about 2.3 s (Whisper 0.6 s + VLM 1.7 s).</figcaption></figure>
+      <p class="honest deep">Every drowsiness test was pre-registered and run once on drivers the system had never seen. Two earlier traffic-light tests failed — they're in the repo too.</p>
+      <div class="tags"><span class="tag">PyTorch</span><span class="tag">YOLO11</span><span class="tag">MediaPipe</span><span class="tag">Whisper</span><span class="tag">VLM agent</span></div>
+      <div class="links"><a href="https://github.com/RuchirBhatia4/Multimodal-In-Vehicle-AI-Assistant" target="_blank" rel="noopener">Repo ↗</a><a href="https://github.com/RuchirBhatia4/Multimodal-In-Vehicle-AI-Assistant#readme" target="_blank" rel="noopener">How it was tested ↗</a></div>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="body">
+      <div class="row"><h3>Sociopals</h3><span class="date">fullstack · solo</span></div>
+      <p class="desc">A real-time social platform designed and shipped end-to-end: authentication, access control, live messaging, and audio/video channels, on reusable APIs and a relational data model.</p>
+      <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Prisma / MySQL</span><span class="tag">Socket.io</span></div>
+      <div class="links"><a href="https://github.com/RuchirBhatia4/sociopals" target="_blank" rel="noopener">Repo ↗</a></div>
+    </div>
+  </article>
+</section>
+
+<section id="numbers" class="rv">
+  <h2>By the Numbers <span class="n">03</span></h2>
+  <p class="sub">Measured, not estimated.</p>
+  <div class="nums">
+    <div class="num"><b data-count="111" data-suf="%">0</b><small>user growth at Transnode AI while I shipped features</small></div>
+    <div class="num"><b data-count="65" data-suf="%">0</b><small>lower latency on a RAG pipeline</small></div>
+    <div class="num"><b data-count="173">0</b><small>driver-races in PitWall's walk-forward backtest</small></div>
+    <div class="num"><b data-text="&lt;3s">&lt;3s</b><small>from live timing to a pit call</small></div>
+    <div class="num"><b data-text="10/12">10/12</b><small>unseen drowsy drivers caught by DriveMind</small></div>
+    <div class="num"><b data-text="0.95">0.95</b><small>blink F1, leave-one-person-out</small></div>
+    <div class="num"><b data-count="18" data-suf="%">0</b><small>memory saved on Redis ElastiCache</small></div>
+    <div class="num"><b data-count="3">0</b><small>publications: IEEE paper, patent, research paper</small></div>
+  </div>
+</section>
+
+<section id="pubs" class="rv">
+  <h2>Publications <span class="n">04</span></h2>
+  <p class="sub">&nbsp;</p>
+  <div>
+    <div class="list-item"><div class="kind">IEEE · Published</div><div class="row"><span class="org"><a href="https://ieeexplore.ieee.org/document/10673617" target="_blank" rel="noopener">OS Scheduling &amp; Page Replacement</a></span></div><p class="desc deep">Peer-reviewed analysis of page-replacement and CPU-scheduling algorithms for OS memory management.</p></div>
+    <div class="list-item"><div class="kind">Patent · Accepted</div><div class="row"><span class="org"><a href="https://drive.google.com/file/d/1g4c4rn8txbktou8TRWMAxyOLE6wgtM-W/view" target="_blank" rel="noopener">LLM Healthcare Chatbot</a></span></div><p class="desc deep">Retrieval-augmented chatbot grounded in structured medical knowledge for clinical question answering.</p></div>
+    <div class="list-item"><div class="kind">Research Paper</div><div class="row"><span class="org"><a href="https://arxiv.org/abs/2603.12625" target="_blank" rel="noopener">VLM4Rec: Multimodal Recommendation</a></span></div><p class="desc deep">Grounds item images into semantic descriptions with a vision-language model, outperforming fusion-based baselines.</p></div>
+    <div class="list-item"><div class="kind">Software Copyright · Registered</div><div class="row"><span class="org"><a href="https://drive.google.com/file/d/1xHhhW7KOk1YWMflvC0h3pI-MUgGHQ3lv/view" target="_blank" rel="noopener">Page-Replacement Algorithms in Shell</a></span></div></div>
+  </div>
+</section>
+
+<section id="edu" class="rv">
+  <h2>Education <span class="n">05</span></h2>
+  <p class="sub">&nbsp;</p>
+  <div class="list-item">
+    <div class="row"><span class="org">University of Southern California <span class="r">M.S. Computer Science</span></span><span class="date">– May 2027</span></div>
+    <div class="chips deep"><span class="tag">CSCI 566 Deep Learning</span><span class="tag">CSCI 570 Algorithms</span><span class="tag">CSCI 642 Robot Learning</span><span class="tag">DSCI 552 ML — 4.0, joint top scorer</span></div>
+  </div>
+  <div class="list-item">
+    <div class="row"><span class="org">Bharati Vidyapeeth College of Engineering <span class="r">B.Tech Computer Engineering</span></span><span class="date">– Jun 2024</span></div>
+    <div class="chips"><span class="tag">GPA 3.87 / 4.00</span><span class="tag">Top 5% of class</span><span class="tag deep">Algorithms</span><span class="tag deep">Operating Systems</span><span class="tag deep">Machine Learning</span></div>
+  </div>
+</section>
+
+<section id="skills" class="rv">
+  <h2>Skills <span class="n">06</span></h2>
+  <p class="sub">&nbsp;</p>
+  <div class="skills">
+    <div><h4><i>001</i>Languages</h4><p>Python, C++, TypeScript / JavaScript, SQL, Swift, Bash</p></div>
+    <div><h4><i>002</i>ML &amp; AI</h4><p>PyTorch, TensorFlow, LLMs, RAG, vision-language models, Whisper, YOLO, MediaPipe, XGBoost / LightGBM, honest evaluation</p></div>
+    <div><h4><i>003</i>Software</h4><p>React, React Native, Next.js, Node.js, FastAPI, REST APIs, real-time systems, system design</p></div>
+    <div><h4><i>004</i>Cloud &amp; Data</h4><p>AWS (EC2, S3, ElastiCache), Redis, MySQL, Docker, Vercel, Render, Git</p></div>
+  </div>
+</section>
+
+<section id="contact" class="rv">
+  <div class="contact">
+    <h2>Let's build something.</h2>
+    <p>I'm looking for full-time Software, ML and AI engineering roles starting mid-2027. The fastest way to reach me is email — I reply within a day.</p>
+    <div class="cta" style="margin:0">
+      <a class="btn solid" href="mailto:bhatiaruchir04@gmail.com">✉ bhatiaruchir04@gmail.com</a>
+      <button class="btn" id="copyEmail">Copy email</button>
+      <a class="btn" href="https://www.linkedin.com/in/ruchir-bhatia/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer><span>© 2026 Ruchir Bhatia</span><span class="mono">Press <span class="kbd">⌘K</span> to go anywhere</span></footer>
+</main>
+
+<div class="cmdk-bg" id="cmdkBg"><div class="cmdk" role="dialog" aria-label="Command menu">
+  <input id="cmdkIn" placeholder="Jump to a section, open a link, copy my email…" autocomplete="off">
+  <ul id="cmdkList"></ul>
+</div></div>
+<div class="toast" id="toast"></div>
+<div class="lb" id="lb" role="dialog" aria-label="DriveMind demo, full size"><img alt="DriveMind live demo, full size"></div>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s);
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),1600)};
+const EMAIL='bhatiaruchir04@gmail.com';
+const copyEmail=()=>{(navigator.clipboard?navigator.clipboard.writeText(EMAIL):Promise.reject()).then(()=>toast('Email copied'),()=>toast(EMAIL))};
+
+/* theme */
+const root=document.documentElement;
+const saved=store.get('theme'); if(saved) root.dataset.theme=saved;
+const isDark=()=>root.dataset.theme? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+const toggleTheme=()=>{root.dataset.theme=isDark()?'light':'dark';store.set('theme',root.dataset.theme)};
+$('#theme').onclick=toggleTheme;
+
+/* skim / deep */
+const setMode=m=>{document.body.classList.toggle('skim',m==='skim');$('#mSkim').classList.toggle('on',m==='skim');$('#mDeep').classList.toggle('on',m!=='skim');store.set('mode',m)};
+$('#mSkim').onclick=()=>{setMode('skim');toast('Skim mode — the 30-second version')};
+$('#mDeep').onclick=()=>setMode('deep');
+if(store.get('mode')==='skim') setMode('skim');
+
+/* LA clock */
+const clk=$('#clock');const tick=()=>{clk.textContent='🕑 '+new Date().toLocaleTimeString('en-US',{timeZone:'America/Los_Angeles',hour:'numeric',minute:'2-digit'})+' in LA'};tick();setInterval(tick,30000);
+
+/* rotating tagline */
+const phrases=['at 300 km/h','on the first try','when a driver blinks','for 1,400 users','under 3 seconds'];
+let pi=0;const rot=$('#rot');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(()=>{pi=(pi+1)%phrases.length;rot.style.opacity=0;setTimeout(()=>{rot.textContent=phrases[pi];rot.style.opacity=1},220)},2600);
+rot.style.transition='opacity .22s';
+
+/* reveal + counters */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');
+  e.target.querySelectorAll('[data-count]').forEach(el=>{const n=+el.dataset.count,t0=performance.now();const f=t=>{const p=Math.min(1,(t-t0)/1100);el.textContent=Math.round(n*(1-Math.pow(1-p,3)))+(el.dataset.suf||'');if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)});
+  io.unobserve(e.target)}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* nav highlight */
+const tabs=[...document.querySelectorAll('nav a.tab[href^="#"]')];
+const secIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){tabs.forEach(t=>t.classList.toggle('on',t.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
+['top','work','projects'].forEach(id=>secIO.observe(document.getElementById(id)));
+
+/* command palette */
+const go=id=>()=>document.getElementById(id).scrollIntoView({behavior:'smooth'});
+const open=u=>()=>window.open(u,'_blank','noopener');
+const cmds=[
+ ['Experience','section',go('work')],['Projects','section',go('projects')],['By the numbers','section',go('numbers')],
+ ['Publications','section',go('pubs')],['Education','section',go('edu')],['Skills','section',go('skills')],['Contact','section',go('contact')],
+ ['Copy email','action',copyEmail],['Email Ruchir','action',()=>location.href='mailto:'+EMAIL],['Download résumé','link',open('resume.pdf')],
+ ['Watch DriveMind demo','action',()=>{document.getElementById('dmShot').click()}],['Watch PitWall replay','action',()=>{document.querySelector('.pwviz .shot').click()}],['Open PitWall AI (live)','link',open('https://pitwall-ai-f1.vercel.app')],['GitHub','link',open('https://github.com/RuchirBhatia4')],
+ ['LinkedIn','link',open('https://www.linkedin.com/in/ruchir-bhatia/')],['Toggle dark mode','action',toggleTheme],
+ ['Skim mode (30-second read)','action',()=>setMode('skim')],['Deep mode','action',()=>setMode('deep')]];
+const bg=$('#cmdkBg'),inp=$('#cmdkIn'),ul=$('#cmdkList');let sel=0,shown=cmds;
+const render=()=>{const q=inp.value.toLowerCase().trim();shown=cmds.filter(c=>c[0].toLowerCase().includes(q)||c[1].includes(q));sel=Math.min(sel,Math.max(0,shown.length-1));
+  ul.innerHTML=shown.map((c,i)=>`<li class="${i===sel?'sel':''}" data-i="${i}">${c[0]}<small>${c[1]}</small></li>`).join('')||'<li>No matches</li>'};
+const openK=()=>{bg.classList.add('open');inp.value='';sel=0;render();setTimeout(()=>inp.focus(),10)};
+const closeK=()=>bg.classList.remove('open');
+const run=i=>{const c=shown[i];if(c){closeK();c[2]()}};
+$('#openK').onclick=openK;
+bg.onclick=e=>{if(e.target===bg)closeK()};
+ul.onclick=e=>{const li=e.target.closest('li[data-i]');if(li)run(+li.dataset.i)};
+inp.oninput=()=>{sel=0;render()};
+document.addEventListener('keydown',e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();bg.classList.contains('open')?closeK():openK();return}
+  if(!bg.classList.contains('open'))return;
+  if(e.key==='Escape')closeK();
+  else if(e.key==='ArrowDown'){sel=(sel+1)%shown.length;render();e.preventDefault()}
+  else if(e.key==='ArrowUp'){sel=(sel-1+shown.length)%shown.length;render();e.preventDefault()}
+  else if(e.key==='Enter')run(sel);
+});
+$('#copyEmail').onclick=copyEmail;
+
+/* ---------- live sketches ---------- */
+const css=n=>getComputedStyle(root).getPropertyValue(n).trim();
+function setup(cv){const r=cv.getBoundingClientRect(),d=devicePixelRatio||1;cv.width=r.width*d;cv.height=r.height*d;const c=cv.getContext('2d');c.setTransform(d,0,0,d,0,0);return [c,r.width,r.height]}
+const sketches={};
+function loop(id,draw){const cv=document.getElementById(id);let st={run:true,visible:false,t:0,last:0};sketches[id]=st;
+  new IntersectionObserver(es=>{st.visible=es[0].isIntersecting}).observe(cv);
+  const f=ts=>{const dt=Math.min(50,ts-(st.last||ts));st.last=ts;if(st.run&&st.visible){st.t+=dt;const [c,w,h]=setup(cv);draw(c,w,h,st.t)}requestAnimationFrame(f)};
+  requestAnimationFrame(f);
+  const [c,w,h]=setup(cv);draw(c,w,h,0);}
+document.querySelectorAll('.viz .ctl button').forEach(b=>b.onclick=()=>{const s=sketches[b.dataset.for];s.run=!s.run;b.textContent=s.run?'pause':'play';b.classList.toggle('on',s.run)});
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* PitWall: tyre-wear lap-time traces for a 1-stop race; strategy window shaded */
+const LAPS=57;
+function lapTime(l){ // illustrative: medium stint 1–23, hard 24–57
+  const stint=l<=23?l:l-23, base=l<=23?92.4:93.0, deg=l<=23?0.055:0.032;
+  return base+deg*stint+0.0016*stint*stint-0.012*l+(Math.sin(l*7.3)*.12);
+}
+loop('pw',(c,w,h,t)=>{
+  const lap=reduce?LAPS:Math.min(LAPS,1+Math.floor((t/180)%(LAPS+18)));
+  document.getElementById('pwLap').textContent=`LAP ${lap}/${LAPS}`;
+  const L=34,R=w-14,T=34,B=h-24,ink=css('--ink-3'),line=css('--line'),acc=css('--accent-text');
+  const x=l=>L+(l-1)/(LAPS-1)*(R-L),y=v=>B-(v-91.6)/(94.8-91.6)*(B-T);
+  c.strokeStyle=line;c.lineWidth=1;c.font='10px JetBrains Mono';c.fillStyle=ink;
+  for(let v=92;v<=94.5;v+=1){c.beginPath();c.moveTo(L,y(v));c.lineTo(R,y(v));c.stroke();c.fillText(v.toFixed(0)+'s',4,y(v)+3)}
+  // optimal window
+  c.fillStyle=css('--accent-soft');c.fillRect(x(20),T,x(26)-x(20),B-T);
+  c.fillStyle=acc;c.fillText('pit window',x(20)+3,T+11);
+  // trace
+  c.beginPath();c.lineWidth=2;c.strokeStyle=css('--ink');
+  for(let l=1;l<=lap;l++){const p=[x(l),y(lapTime(l))];l===1?c.moveTo(...p):c.lineTo(...p)}c.stroke();
+  // pit marker + compounds
+  if(lap>=23){c.strokeStyle=acc;c.setLineDash([3,3]);c.beginPath();c.moveTo(x(23.5),T);c.lineTo(x(23.5),B);c.stroke();c.setLineDash([]);c.fillStyle=acc;c.fillText('BOX',x(23.5)+4,B-6)}
+  c.fillStyle=ink;c.fillText('MEDIUM',x(4),B+16);c.fillText('HARD',x(36),B+16);
+  // head dot
+  const hy=y(lapTime(lap));c.fillStyle=acc;c.beginPath();c.arc(x(lap),hy,4,0,7);c.fill();
+});
+
+/* DriveMind: eye-openness signal — quick blinks pass, a long closure fires an alert */
+function eye(s){ // s seconds, 12 s cycle
+  const p=s%12;let v=.82+.03*Math.sin(s*2.1);
+  for(const b of [1.4,4.1,6.0]) if(Math.abs(p-b)<.12) v=.82-.7*(1-Math.abs(p-b)/.12);
+  if(p>8.2&&p<9.9) v=.12+.03*Math.sin(s*9); else if(p>7.9&&p<=8.2) v=.82-(p-7.9)/.3*.7; else if(p>=9.9&&p<10.2) v=.12+(p-9.9)/.3*.7;
+  return v;
+}
+loop('dm',(c,w,h,t)=>{
+  const s=reduce?9.5:t/1000,L=34,R=w-14,T=34,B=h-24,span=6,ink=css('--ink-3'),acc=css('--accent-text');
+  const thr=.35,y=v=>B-v*(B-T),x=u=>L+(u/span)*(R-L);
+  c.font='10px JetBrains Mono';c.strokeStyle=css('--line');c.lineWidth=1;
+  c.fillStyle=ink;c.fillText('open',4,y(.85)+3);c.fillText('shut',4,y(.08)+3);
+  c.setLineDash([4,4]);c.strokeStyle=ink;c.beginPath();c.moveTo(L,y(thr));c.lineTo(R,y(thr));c.stroke();c.setLineDash([]);
+  c.fillText('closed threshold',R-104,y(thr)-5);
+  // closed-duration shading
+  const p=s%12, alert=p>8.9&&p<10.4;
+  c.beginPath();c.lineWidth=2;c.strokeStyle=css('--ink');
+  for(let i=0;i<=200;i++){const u=i/200*span,v=eye(s-span+u);i?c.lineTo(x(u),y(v)):c.moveTo(x(u),y(v))}c.stroke();
+  for(let i=0;i<=200;i++){const u=i/200*span,ts=s-span+u,v=eye(ts),q=((ts%12)+12)%12;if(v<thr&&q>8&&q<10.2){c.fillStyle=css('--accent-soft');c.fillRect(x(u),y(thr),(R-L)/200+1,B-y(thr))}}
+  c.fillStyle=acc;c.beginPath();c.arc(x(span),y(eye(s)),4,0,7);c.fill();
+  const lab=document.getElementById('dmState');
+  if(alert){lab.textContent='⚠ MICROSLEEP → ALERT';c.fillStyle=acc;c.font='600 12px Inter';c.fillText('Wake up — pull over soon',L+8,T+4)}
+  else lab.textContent=eye(s)<thr?'BLINK (ignored)':'EYES OPEN';
+});
+})();
+
+
+/* project media: recorded demo / live / sketch tabs + lightbox */
+(()=>{
+const shows=[];
+document.querySelectorAll('.dmviz').forEach(v=>{
+  const tabs=v.querySelectorAll('.vtabs button'),panes=v.querySelectorAll('.pane');
+  const show=k=>{tabs.forEach(b=>b.classList.toggle('on',b.dataset.v===k));panes.forEach(p=>p.hidden=p.dataset.p!==k)};
+  tabs.forEach(b=>b.onclick=()=>show(b.dataset.v));shows.push(show);
+});
+const lb=document.getElementById('lb'),lbi=lb.querySelector('img');
+document.querySelectorAll('.shot').forEach(b=>b.onclick=()=>{const im=b.querySelector('img');lbi.src=b.dataset.full||im.src;lbi.alt=im.alt;lb.classList.add('open')});
+lb.onclick=()=>lb.classList.remove('open');
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
+// the live app only loads when asked, so it never slows the page down
+document.getElementById('pwLoad').onclick=()=>{const w=document.getElementById('pwLive');
+  w.innerHTML='<iframe src="https://pitwall-ai-f1.vercel.app/live" title="PitWall AI live pit wall" loading="lazy" allow="clipboard-write"></iframe>'};
+// skim mode always shows the real recordings
+new MutationObserver(()=>{if(document.body.classList.contains('skim'))shows.forEach(f=>f('rec'))}).observe(document.body,{attributes:true,attributeFilter:['class']});
+})();
+
+/* ---------- hero: particle morph ---------- */
+(()=>{
+const box=document.getElementById('morph'),cv=document.getElementById('mc'),c=cv.getContext('2d');
+const nameEl=document.getElementById('mName'),pipsEl=document.getElementById('pips');
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W=0,H=0,DPR=1,P=[],shapes=[],cur=0,mouse={x:-1e4,y:-1e4,down:false},visible=true;
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let N=0;
+// each shape draws white-on-black into an offscreen canvas, then we sample lit pixels
+const defs=[
+ {name:'RB',hint:'move your cursor through it · click to morph',draw:(g,w,h)=>{g.font=`700 ${h*.78}px Inter,sans-serif`;g.textAlign='center';g.textBaseline='middle';g.fillText('RB',w/2,h*.54)}},
+ {name:'racing line',hint:'PitWall AI — every lap, every stop plan',draw:(g,w,h)=>{const s=h/250*.82;g.lineWidth=14*s;g.lineJoin=g.lineCap='round';g.beginPath();
+   const cx=w/2,cy0=h*.47,pts=[[-230,40],[-200,-80],[-90,-95],[-40,-30],[40,-40],[90,-100],[210,-90],[235,10],[170,95],[40,70],[-60,100],[-190,105]];
+   g.moveTo(cx+pts[0][0]*s,cy0+pts[0][1]*s);for(let i=0;i<pts.length;i++){const a=pts[i],b=pts[(i+1)%pts.length],m=[(a[0]+b[0])/2,(a[1]+b[1])/2];g.quadraticCurveTo(cx+a[0]*s,cy0+a[1]*s,cx+m[0]*s,cy0+m[1]*s)}g.closePath();g.stroke();
+   g.fillRect(cx-150*s,cy0+88*s,7*s,30*s)}},
+ {name:'eye',hint:'DriveMind — watching for microsleeps',draw:(g,w,h)=>{const s=h/250*.9,cx=w/2,cy=h*.47;g.lineWidth=11*s;g.beginPath();g.moveTo(cx-170*s,cy);g.quadraticCurveTo(cx,cy-150*s,cx+170*s,cy);g.quadraticCurveTo(cx,cy+150*s,cx-170*s,cy);g.stroke();
+   g.beginPath();g.arc(cx,cy,48*s,0,7);g.fill();g.globalCompositeOperation='destination-out';g.beginPath();g.arc(cx+14*s,cy-14*s,13*s,0,7);g.fill();g.globalCompositeOperation='source-over'}},
+ {name:'</>',hint:'fullstack — React Native, Next.js, FastAPI',draw:(g,w,h)=>{g.font=`600 ${h*.6}px "JetBrains Mono",monospace`;g.textAlign='center';g.textBaseline='middle';g.fillText('</>',w/2,h*.52)}},
+];
+function sample(def){
+  const o=document.createElement('canvas'),w=Math.round(W),h=Math.round(H);o.width=w;o.height=h;const g=o.getContext('2d');
+  g.fillStyle=g.strokeStyle='#fff';def.draw(g,w,h);
+  const d=g.getImageData(0,0,w,h).data,pts=[];const step=def.step||4;
+  for(let y=0;y<h;y+=step)for(let x=0;x<w;x+=step){const i=(y*w+x)*4;if(d[i+3]>128&&d[i]>(def.thresh||128))pts.push([x+(Math.random()-.5)*2,y+(Math.random()-.5)*2])}
+  for(let i=pts.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[pts[i],pts[j]]=[pts[j],pts[i]]}
+  return pts;
+}
+// optional: if photo.jpg is present, add a "you" shape built from its brightness
+const img=new Image();img.onload=()=>{defs.push({name:'hi, it’s me',hint:'that’s actually me',thresh:1,step:3,draw:(g,w,h)=>{
+   const s=h*.9/img.height,iw=img.width*s,ih=img.height*s;g.fillStyle='#000';g.fillRect(0,0,w,h);g.drawImage(img,(w-iw)/2,2,iw,ih);
+   const id=g.getImageData(0,0,w,h),d=id.data;
+   for(let i=0;i<d.length;i+=4){const v=(d[i]+d[i+1]+d[i+2])/3/255;const x=(i/4)%w,y=(i/4)/w|0;
+     const inImg=x>(w-iw)/2&&x<(w+iw)/2&&y<ih+2;
+     // mid-tones get a fair share of dots so the face has shading, not just hair and jacket
+     const on=inImg&&v<.97&&Math.random()<Math.pow(1-v,1.3)*1.1;d[i]=d[i+1]=d[i+2]=on?255:0;d[i+3]=255}
+   g.putImageData(id,0,0)}});
+   buildPips();if(W){shapes.push(sample(defs[defs.length-1]));N=Math.min(4200,Math.max(N,shapes.at(-1).length));while(P.length<N)P.push({x:Math.random()*W,y:Math.random()*H,vx:0,vy:0,tx:0,ty:0,a:0,r:Math.random()<.08})}};
+img.src='photo.jpg';
+function buildPips(){pipsEl.innerHTML=defs.map((d,i)=>`<button aria-label="${d.name}" class="${i===cur?'on':''}"></button>`).join('');
+  [...pipsEl.children].forEach((b,i)=>b.onclick=e=>{e.stopPropagation();go(i)})}
+function resize(){
+  const r=box.getBoundingClientRect();if(Math.abs(r.width-W)<2&&P.length)return;
+  W=r.width;H=r.height;DPR=devicePixelRatio||1;cv.width=W*DPR;cv.height=H*DPR;c.setTransform(DPR,0,0,DPR,0,0);
+  shapes=defs.map(sample);
+  N=Math.min(3200,Math.max(...shapes.map(x=>x.length)));
+  while(P.length<N)P.push({x:Math.random()*W,y:Math.random()*H,vx:0,vy:0,tx:0,ty:0,a:0,r:Math.random()<.08});
+  if(0)for(let i=0;i<N;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:0,vy:0,tx:0,ty:0,a:0,r:Math.random()<.08});
+  assign(true);
+}
+function assign(){const pts=shapes[cur];P.forEach((p,i)=>{if(i<pts.length){p.tx=pts[i][0];p.ty=pts[i][1];p.on=true}else{p.on=false;p.tx=Math.random()*W;p.ty=H+40}})}
+function go(i){cur=(i+defs.length)%defs.length;nameEl.textContent=defs[cur].name;document.getElementById('mHint').textContent=defs[cur].hint;
+  // burst outward a little before re-forming
+  P.forEach(p=>{p.vx+=(Math.random()-.5)*14;p.vy+=(Math.random()-.5)*14});assign();
+  [...pipsEl.children].forEach((b,k)=>b.classList.toggle('on',k===cur))}
+const pos=e=>{const r=cv.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top};
+box.addEventListener('pointermove',pos);
+box.addEventListener('pointerleave',()=>{mouse.x=mouse.y=-1e4});
+box.addEventListener('pointerdown',e=>{pos(e);mouse.down=true});
+addEventListener('pointerup',()=>mouse.down=false);
+box.addEventListener('click',()=>go(cur+1));
+new IntersectionObserver(es=>visible=es[0].isIntersecting).observe(box);
+addEventListener('resize',()=>{clearTimeout(resize._t);resize._t=setTimeout(resize,150)});
+let t=0;
+function frame(){
+  if(visible){
+    t+=.016;const ink=css('--ink'),acc=css('--accent');c.clearRect(0,0,W,H);
+    const R=mouse.down?140:90;
+    for(const p of P){
+      // spring toward target, gentle idle wobble, repel from cursor
+      const wob=rm?0:Math.sin(t*1.3+p.tx*.05)*.6;
+      p.vx+=(p.tx+wob-p.x)*.045;p.vy+=(p.ty+Math.cos(t*1.1+p.ty*.05)*.6-p.y)*.045;
+      const dx=p.x-mouse.x,dy=p.y-mouse.y,d2=dx*dx+dy*dy;
+      if(d2<R*R){const d=Math.sqrt(d2)||1,f=(1-d/R)*(mouse.down?9:5);p.vx+=dx/d*f;p.vy+=dy/d*f}
+      p.vx*=.82;p.vy*=.82;p.x+=p.vx;p.y+=p.vy;
+      p.a+=((p.on?1:0)-p.a)*.06;if(p.a<.02)continue;
+      const sp=Math.min(1,Math.hypot(p.vx,p.vy)/6);
+      c.globalAlpha=p.a*(.55+.45*(1-sp));c.fillStyle=(p.r||sp>.5)?acc:ink;
+      c.fillRect(p.x-1,p.y-1,2,2);
+    }
+    c.globalAlpha=1;
+  }
+  requestAnimationFrame(frame);
+}
+document.fonts?document.fonts.ready.then(()=>{resize();buildPips();frame()}):(resize(),buildPips(),frame());
+if(!rm)setInterval(()=>{if(visible&&mouse.x<-1e3&&!document.hidden)go(cur+1)},7000);
+})();
+</script>
+</body>
 </html>
