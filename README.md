@@ -1,6 +1,6 @@
 # Ruchir Bhatia — Portfolio
 
-Live: https://ruchirportfoliowebsite.vercel.app
+Live: https://ruchirbhatia.com
 
 A single static page (`index.html`) with no framework or dependencies:
 particle hero, Skim/Deep reading modes, a ⌘K command menu, real recordings of
