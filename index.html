@@ -62,8 +62,8 @@ nav .sp{flex:1}
 .seg{display:inline-flex;border:1px solid var(--line-2);border-radius:8px;overflow:hidden;background:var(--surface)}
 .seg button{font:500 12px Inter,sans-serif;border:0;background:none;color:var(--ink-3);padding:5px 9px;cursor:pointer}
 .seg button.on{background:var(--ink);color:var(--bg)}
-nav a.tab{white-space:nowrap}
-@media (max-width:560px){nav a.tab.hide-sm,.hide-sm{display:none}nav .wrap{gap:2px}nav a.tab{padding:4px 7px}}
+nav a.tab{white-space:nowrap}.br-sm{display:none}
+@media (max-width:560px){.br-sm{display:inline}nav a.tab.hide-sm,.hide-sm{display:none}nav .wrap{gap:2px}nav a.tab{padding:4px 7px}nav .wrap{padding-left:12px;padding-right:12px}nav a.tab{font-size:12px;padding:4px 5px}#navPhotos{line-height:1.1;text-align:center;font-size:11px;padding:2px 4px}nav a.tab:not(#navPhotos){padding:4px 4px}nav .seg button{font-size:11.5px;padding:5px 5px}nav #theme{padding:5px 6px}nav .wrap{overflow-x:auto;scrollbar-width:none}nav .wrap::-webkit-scrollbar{display:none}nav .wrap>*{flex-shrink:0}}
 
 /* hero */
 header.hero{padding:56px 0 28px}
@@ -309,7 +309,7 @@ b,strong{font-weight:inherit}
     <a class="tab" href="#projects">Projects</a>
     <a class="tab hide-sm" href="https://github.com/RuchirBhatia4" target="_blank" rel="noopener">GitHub ↗</a>
     <a class="tab" href="resume.pdf" id="navResume">Résumé</a>
-    <a class="tab" href="#gallery" id="navPhotos">Photos</a>
+    <a class="tab" href="#gallery" id="navPhotos">Life outside<br class="br-sm"> code</a>
     <span class="sp"></span>
     <div class="seg" title="Skim = the 30-second version">
       <button id="mSkim">Skim</button><button id="mDeep" class="on">Deep</button>
