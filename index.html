@@ -17,7 +17,7 @@
 <meta name="theme-color" content="#0e0e0d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Caveat:wght@400&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#fafaf8; --surface:#ffffff; --ink:#111110; --ink-2:#55554f; --ink-3:#8f8f88;
@@ -47,7 +47,7 @@ a:hover{text-decoration-color:var(--accent)}
 
 /* banner + nav */
 .banner{background:var(--ink);color:var(--bg);font-size:12.5px;text-align:center;padding:7px 16px}
-.banner a{color:inherit;font-weight:500}
+.banner a{color:inherit;font-weight:400}
 .banner .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ddc84;margin-right:8px;vertical-align:1px;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:ping 2s infinite}
 @keyframes ping{70%{box-shadow:0 0 0 7px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
 nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
@@ -55,28 +55,38 @@ nav .wrap{display:flex;align-items:center;gap:6px;height:50px}
 nav a.tab{font-size:13px;padding:4px 10px;border-radius:7px;text-decoration:none;color:var(--ink-2)}
 nav a.tab:hover,nav a.tab.on{background:var(--chip);color:var(--ink)}
 nav .sp{flex:1}
-.kbd{font:500 12px Inter,system-ui,sans-serif;border:1px solid var(--line-2);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--ink-2);background:var(--surface)}
-.btn{font:500 12.5px Inter,sans-serif;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.kbd{font:400 12px Inter,system-ui,sans-serif;border:1px solid var(--line-2);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--ink-2);background:var(--surface)}
+.btn{font:400 12.5px Inter,sans-serif;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
 .btn:hover{border-color:var(--ink-3)}
 .btn.solid{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:8px;overflow:hidden;background:var(--surface)}
-.seg button{font:500 12px Inter,sans-serif;border:0;background:none;color:var(--ink-3);padding:5px 9px;cursor:pointer}
-.seg button.on{background:var(--ink);color:var(--bg)}
+/* reading-time dial: one tap between the quick read and the whole story */
+.depth{flex-shrink:0;display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 11px 0 8px;border:1px solid var(--line-2);border-radius:999px;background:var(--surface);color:var(--ink-2);font:400 12.5px Inter,system-ui,sans-serif;cursor:pointer;transition:border-color .2s,background .2s}
+.depth:hover{border-color:var(--ink-3);color:var(--ink)}
+.depth:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.depth svg{width:17px;height:17px;transform:rotate(-90deg);flex-shrink:0}
+.depth .trk{fill:none;stroke:var(--line-2);stroke-width:2.5}
+.depth .fill{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:100 100;stroke-dashoffset:0;transition:stroke-dashoffset .6s cubic-bezier(.2,.8,.2,1)}
+.depth[aria-checked="false"] .fill{stroke-dashoffset:80}
+.depth .dt{display:inline-flex;gap:4px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.depth .dl{color:var(--ink-3)}
+nav .wrap>*{flex-shrink:0}
+/* the bar is a bit wider than the text column so nothing in it ever gets squeezed */
+@media (min-width:561px){nav .wrap{max-width:800px}}
 nav a.tab{white-space:nowrap}.br-sm{display:none}
-@media (max-width:560px){.br-sm{display:inline}nav a.tab.hide-sm,.hide-sm{display:none}nav .wrap{gap:2px}nav a.tab{padding:4px 7px}nav .wrap{padding-left:12px;padding-right:12px}nav a.tab{font-size:12px;padding:4px 5px}#navPhotos{line-height:1.1;text-align:center;font-size:11px;padding:2px 4px}nav a.tab:not(#navPhotos){padding:4px 4px}nav .seg button{font-size:11.5px;padding:5px 5px}nav #theme{padding:5px 6px}nav .wrap{overflow-x:auto;scrollbar-width:none}nav .wrap::-webkit-scrollbar{display:none}nav .wrap>*{flex-shrink:0}}
+@media (max-width:560px){.br-sm{display:inline}nav a.tab.hide-sm,.hide-sm{display:none}nav .wrap{gap:2px}nav a.tab{padding:4px 7px}nav .wrap{padding-left:12px;padding-right:12px}nav a.tab{font-size:12px;padding:4px 5px}#navPhotos{line-height:1.1;text-align:center;font-size:11px;padding:2px 4px}nav a.tab:not(#navPhotos){padding:4px 4px}.depth{height:28px;padding:0 8px 0 6px;gap:5px;font-size:12px}.depth .dl{display:none}nav #theme{padding:5px 6px}nav .wrap{overflow-x:auto;scrollbar-width:none}nav .wrap::-webkit-scrollbar{display:none}nav .wrap>*{flex-shrink:0}}
 
 /* hero */
 header.hero{padding:56px 0 28px}
 .morph{position:relative;height:250px;margin:0 -20px;cursor:crosshair;touch-action:pan-y;user-select:none}
 .morph canvas{display:block;width:100%;height:100%}
 .morph .lbl{position:absolute;left:20px;bottom:6px;font:12px Inter,system-ui,sans-serif;color:var(--ink-3);display:flex;gap:12px;align-items:center;pointer-events:none}
-.morph .lbl b{color:var(--accent-text);font-weight:500}
+.morph .lbl b{color:var(--accent-text);font-weight:400}
 .morph .pips{position:absolute;right:20px;bottom:8px;display:flex;gap:6px}
 .morph .pips button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:var(--line-2);cursor:pointer}
 .morph .pips button.on{background:var(--accent);width:20px;border-radius:4px}
 header.hero{padding-top:28px}
-h1{font-size:30px;line-height:1.2;letter-spacing:-.02em;margin:22px 0 4px;font-weight:500}
-h1 .role{color:var(--ink-3);font-weight:500}
+h1{font-size:30px;line-height:1.2;letter-spacing:-.02em;margin:22px 0 4px;font-weight:400}
+h1 .role{color:var(--ink-3);font-weight:400}
 .tagline{font:400 19px/1.45 Inter,system-ui,sans-serif;letter-spacing:-.01em;color:var(--ink-2);margin:6px 0 16px}
 .tagline .rot{color:var(--accent-text);border-bottom:1px dashed var(--accent)}
 .lede p{margin:0 0 12px;color:var(--ink-2);max-width:62ch}
@@ -93,8 +103,8 @@ h1 .role{color:var(--ink-3);font-weight:500}
 section{padding:34px 0 8px}
 /* jump links land below the sticky nav instead of under it */
 section[id],main[id]{scroll-margin-top:calc(var(--nav-h,50px) + 4px)}
-h2{font-size:21px;letter-spacing:-.015em;font-weight:500;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
-h2 .n{font:500 12px Inter,system-ui,sans-serif;color:var(--ink-3)}
+h2{font-size:21px;letter-spacing:-.015em;font-weight:400;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+h2 .n{font:400 12px Inter,system-ui,sans-serif;color:var(--ink-3)}
 .sub{color:var(--ink-3);font-size:14px;margin:0 0 18px}
 
 /* experience */
@@ -103,7 +113,7 @@ h2 .n{font:500 12px Inter,system-ui,sans-serif;color:var(--ink-3)}
 .xp-item::before{content:"";position:absolute;left:-27px;top:11px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--ink-3)}
 .xp-item.now::before{border-color:var(--accent);background:var(--accent)}
 .row{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
-.org{font-weight:500}
+.org{font-weight:400}
 .org .r{font-weight:400;color:var(--ink-3);font-size:14px;margin-left:6px}
 .date{font:13px Inter,system-ui,sans-serif;color:var(--ink-3)}
 .desc{color:var(--ink-2);font-size:15px;line-height:1.65;margin:6px 0 0}
@@ -114,11 +124,11 @@ h2 .n{font:500 12px Inter,system-ui,sans-serif;color:var(--ink-3)}
 .proj{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:18px;transition:transform .25s,border-color .25s}
 .proj:hover{border-color:var(--line-2);transform:translateY(-2px)}
 .proj .body{padding:18px 20px 18px}
-.proj h3{margin:0;font-size:17px;font-weight:500;letter-spacing:-.01em}
+.proj h3{margin:0;font-size:17px;font-weight:400;letter-spacing:-.01em}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
 .tag{font:12px Inter,system-ui,sans-serif;background:var(--chip);color:var(--ink-2);padding:2px 7px;border-radius:5px}
 .links{display:flex;gap:14px;margin-top:12px;font-size:13px}
-.links a{color:var(--accent-text);text-decoration:none;font-weight:500}
+.links a{color:var(--accent-text);text-decoration:none;font-weight:400}
 .links a:hover{text-decoration:underline}
 .viz{position:relative;border-bottom:1px solid var(--line);background:var(--bg)}
 .viz canvas{display:block;width:100%;height:190px}
@@ -138,7 +148,7 @@ h2 .n{font:500 12px Inter,system-ui,sans-serif;color:var(--ink-3)}
 .liveph>*{position:relative}
 .liveph b{font-size:17px;color:#fff}
 .liveph span{font-size:13px}
-.liveph .btn.solid{background:#04E3AD;border-color:#04E3AD;color:#04130F;font-weight:500;padding:8px 14px;font-size:13.5px}
+.liveph .btn.solid{background:#04E3AD;border-color:#04E3AD;color:#04130F;font-weight:400;padding:8px 14px;font-size:13.5px}
 @media (max-width:560px){.livewrap{height:460px}}
 .dmviz .pane[data-p="sk"]{position:relative;background:var(--bg)}
 .shot{display:block;position:relative;width:100%;padding:0;border:0;background:#0b0d10;cursor:zoom-in}
@@ -158,7 +168,7 @@ h2 .n{font:500 12px Inter,system-ui,sans-serif;color:var(--ink-3)}
 /* numbers */
 .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .num{background:var(--surface);padding:16px 16px 14px}
-.num b{display:block;font:500 26px/1.1 Inter,sans-serif;letter-spacing:-.02em}
+.num b{display:block;font:400 26px/1.1 Inter,sans-serif;letter-spacing:-.02em}
 .num small{display:block;color:var(--ink-3);font-size:13px;line-height:1.4;margin-top:6px}
 @media (max-width:640px){.nums{grid-template-columns:1fr 1fr}}
 
@@ -170,7 +180,7 @@ h2 .n{font:500 12px Inter,system-ui,sans-serif;color:var(--ink-3)}
 
 /* skills */
 .skills{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}
-.skills h4{margin:0 0 6px;font-size:14px;font-weight:500}
+.skills h4{margin:0 0 6px;font-size:14px;font-weight:400}
 .skills h4 i{font:normal 11px Inter,system-ui,sans-serif;color:var(--ink-3);margin-right:8px}
 .skills p{margin:0;color:var(--ink-2);font-size:14.5px;line-height:1.6}
 @media (max-width:560px){.skills{grid-template-columns:1fr}}
@@ -183,7 +193,7 @@ h2 .n{font:500 12px Inter,system-ui,sans-serif;color:var(--ink-3)}
 .contact .btn.solid{background:var(--bg);color:var(--ink);border-color:var(--bg)}
 footer{color:var(--ink-3);font-size:12px;padding:18px 0 48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
-/* skim mode: for the 30-second read */
+/* quick-read mode (the reading-time dial in the top bar) */
 body.skim .deep{display:none!important}
 body.skim .proj .viz:not(.dmviz){display:none}
 body.skim .vtabs{display:none}
@@ -213,7 +223,7 @@ body.skim .vtabs{display:none}
 .pol.drag{cursor:grabbing;transition:none;box-shadow:0 20px 50px rgba(0,0,0,.28)}
 .pol:hover{box-shadow:0 2px 4px rgba(0,0,0,.14),0 18px 40px rgba(0,0,0,.22)}
 .pol .ph{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#e9e8e3;pointer-events:none}
-.pol .cap{display:flex;align-items:center;justify-content:center;height:55px;padding:7px 2px 9px;box-sizing:border-box;overflow:hidden;text-align:center;font:600 17px/1.15 Caveat,cursive;color:#2b2a26}
+.pol .cap{display:flex;align-items:center;justify-content:center;height:55px;padding:7px 2px 9px;box-sizing:border-box;overflow:hidden;text-align:center;font:400 17px/1.15 Caveat,cursive;color:#2b2a26}
 .pol .vid{position:absolute;right:13px;top:13px;font:11.5px Inter,system-ui,sans-serif;color:#fff;background:rgba(0,0,0,.5);border-radius:4px;padding:1px 5px;pointer-events:none}
 .pile-tools{position:absolute;right:20px;top:-6px;display:flex;gap:6px;z-index:5}
 .pile-hint{position:absolute;left:20px;bottom:-4px;font:12px Inter,system-ui,sans-serif;color:var(--ink-3);pointer-events:none}
@@ -234,16 +244,13 @@ body.skim .vtabs{display:none}
   -webkit-mask-image:linear-gradient(transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(transparent,#000 9%,#000 91%,transparent)}
 .rail.show{display:block}
 .rail.l{left:var(--rx,24px)}.rail.r{right:var(--rx,24px)}
-.rail-track{animation:railUp var(--dur,400s) linear infinite;will-change:transform}
-.rail.r .rail-track{animation-name:railDown}
-.rail:hover .rail-track{animation-play-state:paused}
-@keyframes railUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
-@keyframes railDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+/* moved by script (see buildRails): hovering eases it to a stop exactly where it is */
+.rail-track{will-change:transform;backface-visibility:hidden}
 .rail-it{display:block;width:calc(100% - 16px);margin:0 8px 18px;border:0;padding:7px 7px 0;background:#fdfdfb;border-radius:3px;position:relative;cursor:zoom-in;text-align:left;
   box-shadow:0 1px 2px rgba(0,0,0,.12),0 8px 22px rgba(0,0,0,.14);transform:rotate(var(--a,0deg));transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
 .rail-it:hover{transform:rotate(0deg) scale(1.04);box-shadow:0 2px 4px rgba(0,0,0,.14),0 16px 34px rgba(0,0,0,.22)}
 .rail-it img,.rail-it video{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#e9e8e3;pointer-events:none}
-.rail-it .t{display:flex;align-items:center;justify-content:center;height:51px;padding:6px 2px 8px;box-sizing:border-box;overflow:hidden;text-align:center;font:600 16px/1.15 Caveat,cursive;color:#2b2a26}
+.rail-it .t{display:flex;align-items:center;justify-content:center;height:51px;padding:6px 2px 8px;box-sizing:border-box;overflow:hidden;text-align:center;font:400 16px/1.15 Caveat,cursive;color:#2b2a26}
 .rail-it .t>span,.pol .cap>span{display:block;max-width:100%;overflow-wrap:anywhere}
 .rail-it .v{position:absolute;right:12px;top:12px;font:11.5px Inter,system-ui,sans-serif;color:#fff;background:rgba(0,0,0,.5);border-radius:4px;padding:1px 5px}
 @media (prefers-reduced-motion:reduce){.rail{display:none!important}}
@@ -256,7 +263,7 @@ body.skim .vtabs{display:none}
 .rq-card{width:min(860px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line-2);border-radius:16px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.35);animation:rqUp .22s cubic-bezier(.2,.8,.2,1)}
 @keyframes rqUp{from{transform:translateY(12px) scale(.985)}to{transform:none}}
 .rq-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 14px 12px 18px;border-bottom:1px solid var(--line)}
-.rq-title{font-size:15px;font-weight:500;margin-right:auto}
+.rq-title{font-size:15px;font-weight:400;margin-right:auto}
 .rq-title span{color:var(--ink-3);font-weight:400;font-size:13px;margin-left:6px}
 .rq-actions{display:flex;gap:6px;flex-wrap:wrap}
 .rq-x{border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);border-radius:999px;width:32px;height:32px;cursor:pointer;font-size:14px;flex:none}
@@ -268,7 +275,7 @@ body.skim .vtabs{display:none}
 .gal{position:fixed;inset:0;z-index:65;background:var(--bg);display:none;flex-direction:column}
 .gal.open{display:flex}
 .gal-top{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.gal-top h3{margin:0;font-size:17px;font-weight:500;letter-spacing:-.01em;margin-right:auto}
+.gal-top h3{margin:0;font-size:17px;font-weight:400;letter-spacing:-.01em;margin-right:auto}
 .gal-top h3 small{color:var(--ink-3);font-weight:400;font-size:13px;margin-left:6px}
 .gal-chips{display:flex;gap:6px;flex-wrap:wrap;padding:10px 20px;border-bottom:1px solid var(--line)}
 .gal-chips button{font:12.5px Inter,sans-serif;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);border-radius:999px;padding:4px 11px;cursor:pointer}
@@ -285,7 +292,7 @@ body.skim .vtabs{display:none}
 .pv.open{display:flex}
 .pv .media{max-width:100%;max-height:calc(100% - 50px);display:flex;align-items:center;justify-content:center;min-height:0;flex:1}
 .pv img,.pv video{max-width:100%;max-height:100%;border-radius:8px;display:block}
-.pv .pc{color:#f1f0ea;font:600 24px/1.2 Caveat,cursive;margin-top:12px;text-align:center;min-height:30px}
+.pv .pc{color:#f1f0ea;font:400 24px/1.2 Caveat,cursive;margin-top:12px;text-align:center;min-height:30px}
 .pv .pn{position:absolute;top:14px;left:20px;font:13px Inter,system-ui,sans-serif;color:#9a9992}
 .pv button.x,.pv button.nav{position:absolute;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:999px;width:42px;height:42px;cursor:pointer;font-size:18px}
 .pv button.x{top:10px;right:16px}
@@ -311,9 +318,10 @@ b,strong{font-weight:inherit}
     <a class="tab" href="resume.pdf" id="navResume">Résumé</a>
     <a class="tab" href="#gallery" id="navPhotos">Life outside<br class="br-sm"> code</a>
     <span class="sp"></span>
-    <div class="seg" title="Skim = the 30-second version">
-      <button id="mSkim">Skim</button><button id="mDeep" class="on">Deep</button>
-    </div>
+    <button class="depth" id="depth" role="switch" aria-checked="true" title="Reading depth: tap for the quick version (S)">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><circle class="trk" cx="10" cy="10" r="7.5"/><circle class="fill" cx="10" cy="10" r="7.5" pathLength="100"/></svg>
+      <span class="dt"><span id="depthTime">5 min</span><span class="dl">read</span></span>
+    </button>
     <button class="btn hide-sm" id="openK" aria-label="Open command menu"><span class="kbd">⌘K</span></button>
     <button class="btn" id="theme" aria-label="Toggle theme">◐</button>
   </div>
@@ -573,10 +581,32 @@ const toggleTheme=()=>{root.dataset.theme=isDark()?'light':'dark';store.set('the
 $('#theme').onclick=toggleTheme;
 
 /* skim / deep */
-const setMode=m=>{document.body.classList.toggle('skim',m==='skim');$('#mSkim').classList.toggle('on',m==='skim');$('#mDeep').classList.toggle('on',m!=='skim');store.set('mode',m)};
-$('#mSkim').onclick=()=>{setMode('skim');toast('Skim mode: the 30-second version')};
-$('#mDeep').onclick=()=>setMode('deep');
-if(store.get('mode')==='skim') setMode('skim');
+// Reading time from the page's own words (~230 words a minute), for both depths.
+const readTimes=(()=>{
+  const words=el=>(el.innerText||'').trim().split(/\s+/).filter(Boolean).length;
+  const main=document.querySelector('main');
+  const all=words(main);
+  const deepOnly=[...main.querySelectorAll('.deep')].filter(e=>!e.parentElement.closest('.deep')).reduce((n,e)=>n+words(e),0);
+  const fmt=w=>{const sec=Math.max(20,Math.round(w/230*60));return sec<90?`${Math.round(sec/10)*10}s`:`${Math.round(sec/60)} min`};
+  return {skim:fmt(all-deepOnly),deep:fmt(all)};
+})();
+const depthBtn=$('#depth'),depthTime=$('#depthTime');
+const showDepth=m=>{
+  const deep=m!=='skim';
+  depthBtn.setAttribute('aria-checked',String(deep));
+  depthBtn.title=deep?'Reading depth: the whole story. Tap for the quick version (S)':'Reading depth: the quick version. Tap for the whole story (S)';
+  depthBtn.setAttribute('aria-label',`Reading depth: ${deep?'full':'quick'}, about ${deep?readTimes.deep:readTimes.skim}`);
+  // the time rolls to its new value
+  depthTime.animate?.([{opacity:0,transform:'translateY(4px)'},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});
+  depthTime.textContent=deep?readTimes.deep:readTimes.skim;
+};
+const setMode=m=>{document.body.classList.toggle('skim',m==='skim');showDepth(m);store.set('mode',m)};
+depthBtn.onclick=()=>{const toSkim=!document.body.classList.contains('skim');setMode(toSkim?'skim':'deep');toast(toSkim?`Quick version: about ${readTimes.skim}`:`The whole story: about ${readTimes.deep}`)};
+document.addEventListener('keydown',e=>{
+  if(e.key.toLowerCase()!=='s'||e.metaKey||e.ctrlKey||e.altKey||e.target.closest('input,textarea,[contenteditable]'))return;
+  depthBtn.click();
+});
+setMode(store.get('mode')==='skim'?'skim':'deep');
 
 /* LA clock */
 const clk=$('#clock');const tick=()=>{clk.textContent='🕑 '+new Date().toLocaleTimeString('en-US',{timeZone:'America/Los_Angeles',hour:'numeric',minute:'2-digit'})+' in LA'};tick();setInterval(tick,30000);
@@ -607,7 +637,7 @@ const cmds=[
  ['Copy email','action',copyEmail],['Email Ruchir','action',()=>location.href='mailto:'+EMAIL],['View résumé','action',()=>window.openResume&&window.openResume()],['Download résumé (PDF)','link',open('resume.pdf')],
  ['Watch DriveMind demo','action',()=>{document.getElementById('dmShot').click()}],['Photo gallery','action',()=>window.openGallery&&window.openGallery()],['Watch PitWall replay','action',()=>{document.querySelector('.pwviz .shot').click()}],['Open PitWall AI (live)','link',open('https://pitwall-ai-f1.vercel.app')],['GitHub','link',open('https://github.com/RuchirBhatia4')],
  ['LinkedIn','link',open('https://www.linkedin.com/in/ruchir-bhatia/')],['Toggle dark mode','action',toggleTheme],
- ['Skim mode (30-second read)','action',()=>setMode('skim')],['Deep mode','action',()=>setMode('deep')]];
+ [`Quick read (about ${readTimes.skim})`,'action',()=>setMode('skim')],[`Whole story (about ${readTimes.deep})`,'action',()=>setMode('deep')]];
 const bg=$('#cmdkBg'),inp=$('#cmdkIn'),ul=$('#cmdkList');let sel=0,shown=cmds;
 const render=()=>{const q=inp.value.toLowerCase().trim();shown=cmds.filter(c=>c[0].toLowerCase().includes(q)||c[1].includes(q));sel=Math.min(sel,Math.max(0,shown.length-1));
   ul.innerHTML=shown.map((c,i)=>`<li class="${i===sel?'sel':''}" data-i="${i}">${c[0]}<small>${c[1]}</small></li>`).join('')||'<li>No matches</li>'};
@@ -919,9 +949,33 @@ function buildRails(){
     const gutter=(innerWidth-720)/2,rw=Math.min(230,gutter-56);
     const show=rw>=130;
     [L,R].forEach(r=>{r.classList.toggle('show',show);r.style.setProperty('--rw',rw+'px');r.style.setProperty('--rx',Math.max(16,(gutter-rw)/2)+'px')});
-    if(show)[L,R].forEach(r=>{fitCaps(r);const h=r.querySelector('.rail-track').scrollHeight/2;r.style.setProperty('--dur',Math.round(h/22)+'s')}); // ~22 px/s
+    if(show)[L,R].forEach(fitCaps);
   };
   fit();document.fonts?.ready.then(fit);let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(fit,150)});
+
+  // Scroll both rails (~22 px/s, left up, right down). Pointer over a rail eases it to a stop and back,
+  // without jumping: Safari snaps CSS animations when they're paused and resumed.
+  const SPEED=22;
+  const rails=[L,R].map((el,k)=>({el,track:el.querySelector(".rail-track"),dir:k?-1:1,y:0,v:1,target:1,half:0}));
+  rails.forEach(r=>{
+    const measure=()=>{r.half=r.track.scrollHeight/2};
+    measure();
+    if(window.ResizeObserver)new ResizeObserver(measure).observe(r.track); // images loading in change its length
+    r.el.addEventListener('pointerenter',()=>{r.target=0});
+    r.el.addEventListener('pointerleave',()=>{r.target=1});
+  });
+  let last=performance.now();
+  const step=now=>{
+    const dt=Math.min(.1,(now-last)/1000);last=now;
+    for(const r of rails){
+      if(!r.el.classList.contains('show')||!r.half)continue;
+      r.v+=(r.target-r.v)*Math.min(1,dt*6); // ease speed toward 0 (hover) or full
+      r.y=((r.y+r.dir*SPEED*r.v*dt)%r.half+r.half)%r.half; // wrap within one copy of the photos
+      r.track.style.transform=`translate3d(0,${-r.y}px,0)`;
+    }
+    requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
 }
 
 fetch(G+'gallery.json').then(r=>r.json()).then(d=>{
