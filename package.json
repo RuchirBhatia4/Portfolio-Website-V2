@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "description": "Ruchir Bhatia's portfolio: a single static page, no framework.",
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && cp -R index.html resume.pdf media dist/ && (cp photo.jpg dist/ 2>/dev/null || true)",
+    "build": "rm -rf dist && mkdir dist && cp -R index.html resume.pdf media sociopals dist/ && (cp photo.jpg dist/ 2>/dev/null || true)",
     "dev": "python3 -m http.server 5180"
   }
 }
