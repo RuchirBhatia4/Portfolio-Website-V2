@@ -448,16 +448,30 @@ b,strong{font-weight:inherit}
       <figure class="voice deep"><img src="media/drivemind_voice_qa.png" loading="lazy" alt="Spoken question 'Is that light green?' answered on-device: Whisper 0.6 s, VLM 1.7 s, 2.3 s end to end"><figcaption>Ask it out loud, <i>“Is that light green?”</i>, and it answers on-device in about 2.3 s (Whisper 0.6 s + VLM 1.7 s).</figcaption></figure>
       <p class="honest deep">Every drowsiness test was pre-registered and run once on drivers the system had never seen. Two earlier traffic-light tests failed, and they're in the repo too.</p>
       <div class="tags"><span class="tag">PyTorch</span><span class="tag">YOLO11</span><span class="tag">MediaPipe</span><span class="tag">Whisper</span><span class="tag">VLM agent</span></div>
-      <div class="links"><a href="https://github.com/RuchirBhatia4/Multimodal-In-Vehicle-AI-Assistant" target="_blank" rel="noopener">Repo ↗</a><a href="https://github.com/RuchirBhatia4/Multimodal-In-Vehicle-AI-Assistant#readme" target="_blank" rel="noopener">How it was tested ↗</a></div>
+      <div class="links"><a href="https://github.com/RuchirBhatia4/DriveMind" target="_blank" rel="noopener">Repo ↗</a><a href="https://github.com/RuchirBhatia4/DriveMind#readme" target="_blank" rel="noopener">How it was tested ↗</a></div>
     </div>
   </article>
 
   <article class="proj">
+    <div class="viz dmviz spviz">
+      <div class="vtabs" role="tablist">
+        <button class="on" data-v="rec" role="tab">● Recorded on the live site</button>
+      </div>
+      <div class="pane" data-p="rec">
+        <button class="shot" data-full="media/sociopals_demo.webp" aria-label="Open the Sociopals demo full size">
+          <img src="media/sociopals_demo.webp" width="800" height="474" loading="lazy" decoding="async" style="aspect-ratio:800/474"
+               alt="Sociopals running at sociopals.ruchirbhatia.com: a Python snippet is typed into the chat's code editor, sent to #general, and run with Run Python, printing 'Fastest lap: 91.8s' and 'Average: 92.36s'">
+          <span class="expand">⤢ full size</span>
+        </button>
+        <p class="credit">Recorded on <a href="https://sociopals.ruchirbhatia.com" target="_blank" rel="noopener">sociopals.ruchirbhatia.com</a>: a Python snippet typed in the chat's code editor, sent, and run right in the browser (Pyodide, sandboxed). It finished in 3 ms.</p>
+      </div>
+    </div>
     <div class="body">
-      <div class="row"><h3>Sociopals</h3><span class="date">fullstack · solo</span></div>
-      <p class="desc">A real-time social platform designed and shipped end-to-end: authentication, access control, live messaging, and audio/video channels, on reusable APIs and a relational data model.</p>
-      <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Prisma / MySQL</span><span class="tag">Socket.io</span></div>
-      <div class="links"><a href="https://github.com/RuchirBhatia4/sociopals" target="_blank" rel="noopener">Repo ↗</a></div>
+      <div class="row"><h3>Sociopals</h3><span class="date">2026 · deployed</span></div>
+      <p class="desc">A team chat app in the spirit of Slack and Discord: servers, channels, threads, DMs and voice/video calls in real time. Project channels link a GitHub repo for tasks, branches and pull requests, with an AI assistant that runs on each member's own Claude or ChatGPT key. Code blocks run right in the chat.</p>
+      <div class="stats"><span>Python and JavaScript run in the browser (sandboxed)</span><span>AI answers stream live</span><span class="deep">Invite links, webhooks, GitHub activity in channels</span></div>
+      <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Socket.io</span><span class="tag">PostgreSQL / Prisma</span><span class="tag">Pyodide</span><span class="tag">LiveKit</span></div>
+      <div class="links"><a href="https://sociopals.ruchirbhatia.com" target="_blank" rel="noopener">Live app ↗</a><a href="https://github.com/RuchirBhatia4/sociopals" target="_blank" rel="noopener">Repo ↗</a></div>
     </div>
   </article>
 </section>
@@ -635,7 +649,7 @@ const cmds=[
  ['Experience','section',go('work')],['Projects','section',go('projects')],['By the numbers','section',go('numbers')],
  ['Publications','section',go('pubs')],['Education','section',go('edu')],['Skills','section',go('skills')],['Contact','section',go('contact')],
  ['Copy email','action',copyEmail],['Email Ruchir','action',()=>location.href='mailto:'+EMAIL],['View résumé','action',()=>window.openResume&&window.openResume()],['Download résumé (PDF)','link',open('resume.pdf')],
- ['Watch DriveMind demo','action',()=>{document.getElementById('dmShot').click()}],['Photo gallery','action',()=>window.openGallery&&window.openGallery()],['Watch PitWall replay','action',()=>{document.querySelector('.pwviz .shot').click()}],['Open PitWall AI (live)','link',open('https://pitwall-ai-f1.vercel.app')],['GitHub','link',open('https://github.com/RuchirBhatia4')],
+ ['Watch DriveMind demo','action',()=>{document.getElementById('dmShot').click()}],['Photo gallery','action',()=>window.openGallery&&window.openGallery()],['Watch PitWall replay','action',()=>{document.querySelector('.pwviz .shot').click()}],['Open PitWall AI (live)','link',open('https://pitwall-ai-f1.vercel.app')],['Watch Sociopals demo','action',()=>{document.querySelector('.spviz .shot').click()}],['Open Sociopals (live)','link',open('https://sociopals.ruchirbhatia.com')],['GitHub','link',open('https://github.com/RuchirBhatia4')],
  ['LinkedIn','link',open('https://www.linkedin.com/in/ruchir-bhatia/')],['Toggle dark mode','action',toggleTheme],
  [`Quick read (about ${readTimes.skim})`,'action',()=>setMode('skim')],[`Whole story (about ${readTimes.deep})`,'action',()=>setMode('deep')]];
 const bg=$('#cmdkBg'),inp=$('#cmdkIn'),ul=$('#cmdkList');let sel=0,shown=cmds;
