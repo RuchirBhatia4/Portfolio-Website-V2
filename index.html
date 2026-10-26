@@ -414,7 +414,7 @@ b,strong{font-weight:inherit}
     <div class="body">
       <div class="row"><h3>PitWall AI</h3><span class="date">2026 · deployed</span></div>
       <p class="desc">A live Formula 1 race-strategy engine. A Bayesian tyre-wear model updates lap by lap from live timing; an exact dynamic-programming optimiser searches every 0–3 stop plan; Monte Carlo simulates safety-car risk. It makes a pit call in under three seconds.</p>
-      <div class="stats"><span>Walk-forward on 173 driver-races</span><span>First-stop error 9.2 vs 10.3 laps (baseline)</span><span class="deep">Stop-count accuracy 33.5% vs 27.7%</span></div>
+      <div class="stats"><span>Walk-forward on 205 driver-races</span><span>First-stop error 7.1 vs 9.0 laps (baseline)</span><span class="deep">Stop-count accuracy 53.7% vs 44.4%</span></div>
       <p class="honest deep">Honest note: the baseline is a naive strategy, and the margin is real but modest. F1 strategy is hard, and that's why I built it.</p>
       <div class="tags"><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">Bayesian inference</span><span class="tag">Dynamic programming</span><span class="tag">Monte Carlo</span></div>
       <div class="links"><a href="https://pitwallai.ruchirbhatia.com" target="_blank" rel="noopener">Live app ↗</a><a href="https://github.com/RuchirBhatia4/Pitwall-AI" target="_blank" rel="noopener">Repo ↗</a></div>
@@ -482,7 +482,7 @@ b,strong{font-weight:inherit}
   <div class="nums">
     <div class="num"><b data-count="111" data-suf="%">0</b><small>user growth at Transnode AI while I shipped features</small></div>
     <div class="num"><b data-count="65" data-suf="%">0</b><small>lower latency on a RAG pipeline</small></div>
-    <div class="num"><b data-count="173">0</b><small>driver-races in PitWall's walk-forward backtest</small></div>
+    <div class="num"><b data-count="205">0</b><small>driver-races in PitWall's walk-forward backtest</small></div>
     <div class="num"><b data-text="&lt;3s">&lt;3s</b><small>from live timing to a pit call</small></div>
     <div class="num"><b data-text="10/12">10/12</b><small>unseen drowsy drivers caught by DriveMind</small></div>
     <div class="num"><b data-text="0.95">0.95</b><small>blink F1, leave-one-person-out</small></div>
@@ -1030,7 +1030,10 @@ function sample(def){
   for(let i=pts.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[pts[i],pts[j]]=[pts[j],pts[i]]}
   return pts;
 }
-// optional: if photo.jpg is present, add a "you" shape built from its brightness
+// optional "it's me" shape built from a portrait's brightness: set PORTRAIT to an
+// image in the repo (e.g. 'media/portrait.jpg') to turn it on. Unset, nothing is
+// requested (a missing file used to 404 on every visit).
+const PORTRAIT='';
 const img=new Image();img.onload=()=>{defs.push({name:'hi, it’s me',hint:'that’s actually me',thresh:1,step:3,draw:(g,w,h)=>{
    const s=h*.9/img.height,iw=img.width*s,ih=img.height*s;g.fillStyle='#000';g.fillRect(0,0,w,h);g.drawImage(img,(w-iw)/2,2,iw,ih);
    const id=g.getImageData(0,0,w,h),d=id.data;
@@ -1040,7 +1043,7 @@ const img=new Image();img.onload=()=>{defs.push({name:'hi, it’s me',hint:'that
      const on=inImg&&v<.97&&Math.random()<Math.pow(1-v,1.3)*1.1;d[i]=d[i+1]=d[i+2]=on?255:0;d[i+3]=255}
    g.putImageData(id,0,0)}});
    buildPips();if(W){shapes.push(sample(defs[defs.length-1]));N=Math.min(4200,Math.max(N,shapes.at(-1).length));while(P.length<N)P.push({x:Math.random()*W,y:Math.random()*H,vx:0,vy:0,tx:0,ty:0,a:0,r:Math.random()<.08})}};
-img.src='photo.jpg';
+if(PORTRAIT)img.src=PORTRAIT;
 function buildPips(){pipsEl.innerHTML=defs.map((d,i)=>`<button aria-label="${d.name}" class="${i===cur?'on':''}"></button>`).join('');
   [...pipsEl.children].forEach((b,i)=>b.onclick=e=>{e.stopPropagation();go(i)})}
 function resize(){
