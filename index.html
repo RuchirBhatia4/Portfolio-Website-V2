@@ -403,7 +403,7 @@ b,strong{font-weight:inherit}
             <button class="btn solid" id="pwLoad">▶ Load live PitWall</button>
           </div>
         </div>
-        <p class="credit">Embedded from <a href="https://pitwall-ai-f1.vercel.app/live" target="_blank" rel="noopener">pitwall-ai-f1.vercel.app/live</a>. Better on a big screen. <a href="https://pitwall-ai-f1.vercel.app/live" target="_blank" rel="noopener">Open in a new tab ↗</a></p>
+        <p class="credit">Embedded from <a href="https://pitwallai.ruchirbhatia.com/live" target="_blank" rel="noopener">pitwallai.ruchirbhatia.com/live</a>. Better on a big screen. <a href="https://pitwallai.ruchirbhatia.com/live" target="_blank" rel="noopener">Open in a new tab ↗</a></p>
       </div>
       <div class="pane" data-p="sk" hidden>
         <div class="cap"><span class="live">● LIVE SKETCH</span><span id="pwLap">LAP 1/57</span></div>
@@ -417,7 +417,7 @@ b,strong{font-weight:inherit}
       <div class="stats"><span>Walk-forward on 173 driver-races</span><span>First-stop error 9.2 vs 10.3 laps (baseline)</span><span class="deep">Stop-count accuracy 33.5% vs 27.7%</span></div>
       <p class="honest deep">Honest note: the baseline is a naive strategy, and the margin is real but modest. F1 strategy is hard, and that's why I built it.</p>
       <div class="tags"><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">Bayesian inference</span><span class="tag">Dynamic programming</span><span class="tag">Monte Carlo</span></div>
-      <div class="links"><a href="https://pitwall-ai-f1.vercel.app" target="_blank" rel="noopener">Live app ↗</a><a href="https://github.com/RuchirBhatia4/Pitwall-AI" target="_blank" rel="noopener">Repo ↗</a></div>
+      <div class="links"><a href="https://pitwallai.ruchirbhatia.com" target="_blank" rel="noopener">Live app ↗</a><a href="https://github.com/RuchirBhatia4/Pitwall-AI" target="_blank" rel="noopener">Repo ↗</a></div>
     </div>
   </article>
 
@@ -649,7 +649,7 @@ const cmds=[
  ['Experience','section',go('work')],['Projects','section',go('projects')],['By the numbers','section',go('numbers')],
  ['Publications','section',go('pubs')],['Education','section',go('edu')],['Skills','section',go('skills')],['Contact','section',go('contact')],
  ['Copy email','action',copyEmail],['Email Ruchir','action',()=>location.href='mailto:'+EMAIL],['View résumé','action',()=>window.openResume&&window.openResume()],['Download résumé (PDF)','link',open('resume.pdf')],
- ['Watch DriveMind demo','action',()=>{document.getElementById('dmShot').click()}],['Photo gallery','action',()=>window.openGallery&&window.openGallery()],['Watch PitWall replay','action',()=>{document.querySelector('.pwviz .shot').click()}],['Open PitWall AI (live)','link',open('https://pitwall-ai-f1.vercel.app')],['Watch Sociopals demo','action',()=>{document.querySelector('.spviz .shot').click()}],['Open Sociopals (live)','link',open('https://sociopals.ruchirbhatia.com')],['GitHub','link',open('https://github.com/RuchirBhatia4')],
+ ['Watch DriveMind demo','action',()=>{document.getElementById('dmShot').click()}],['Photo gallery','action',()=>window.openGallery&&window.openGallery()],['Watch PitWall replay','action',()=>{document.querySelector('.pwviz .shot').click()}],['Open PitWall AI (live)','link',open('https://pitwallai.ruchirbhatia.com')],['Watch Sociopals demo','action',()=>{document.querySelector('.spviz .shot').click()}],['Open Sociopals (live)','link',open('https://sociopals.ruchirbhatia.com')],['GitHub','link',open('https://github.com/RuchirBhatia4')],
  ['LinkedIn','link',open('https://www.linkedin.com/in/ruchir-bhatia/')],['Toggle dark mode','action',toggleTheme],
  [`Quick read (about ${readTimes.skim})`,'action',()=>setMode('skim')],[`Whole story (about ${readTimes.deep})`,'action',()=>setMode('deep')]];
 const bg=$('#cmdkBg'),inp=$('#cmdkIn'),ul=$('#cmdkList');let sel=0,shown=cmds;
@@ -751,7 +751,7 @@ lb.onclick=()=>lb.classList.remove('open');
 document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
 // the live app only loads when asked, so it never slows the page down
 document.getElementById('pwLoad').onclick=()=>{const w=document.getElementById('pwLive');
-  w.innerHTML='<iframe src="https://pitwall-ai-f1.vercel.app/live" title="PitWall AI live pit wall" loading="lazy" allow="clipboard-write"></iframe>'};
+  w.innerHTML='<iframe src="https://pitwallai.ruchirbhatia.com/live" title="PitWall AI live pit wall" loading="lazy" allow="clipboard-write"></iframe>'};
 // skim mode always shows the real recordings
 new MutationObserver(()=>{if(document.body.classList.contains('skim'))shows.forEach(f=>f('rec'))}).observe(document.body,{attributes:true,attributeFilter:['class']});
 })();
